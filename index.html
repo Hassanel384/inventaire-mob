@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Inventaire MoB — Fiche Équipement</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+    :root {
+      --bg: #0f172a;
+      --card: #1e293b;
+      --border: #334155;
+      --primary: #6366f1;
+      --accent: #38bdf8;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 420px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 28px 24px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      text-align: center;
+    }
+
+    .header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(99, 102, 241, 0.15);
+      color: var(--accent);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 20px;
+    }
+
+    .icon-box {
+      width: 76px; height: 76px;
+      background: linear-gradient(135deg, var(--primary), #4338ca);
+      border-radius: 22px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 38px;
+      margin: 0 auto 16px;
+      box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
+    }
+
+    .title { font-size: 22px; font-weight: 800; margin-bottom: 4px; }
+    .code { font-family: monospace; font-size: 14px; color: var(--accent); font-weight: 700; margin-bottom: 24px; }
+
+    .info-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      text-align: left;
+    }
+
+    .info-item {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .info-icon {
+      font-size: 22px;
+      width: 42px; height: 42px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.05);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .info-content { flex: 1; }
+    .info-label { font-size: 11px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+    .info-value { font-size: 15px; font-weight: 700; color: var(--text); margin-top: 2px; }
+
+    .footer {
+      margin-top: 28px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header-badge">📦 Fiche Inventaire MoB</div>
+  <div class="icon-box" id="icon">🪑</div>
+  <h1 class="title" id="type">Bureau</h1>
+  <div class="code" id="code">BSK-MOB-001</div>
+
+  <div class="info-list">
+    <div class="info-item">
+      <div class="info-icon">👤</div>
+      <div class="info-content">
+        <div class="info-label">Affecté à</div>
+        <div class="info-value" id="aff">—</div>
+      </div>
+    </div>
+
+    <div class="info-item">
+      <div class="info-icon">🏢</div>
+      <div class="info-content">
+        <div class="info-label">Service</div>
+        <div class="info-value" id="svc">—</div>
+      </div>
+    </div>
+
+    <div class="info-item">
+      <div class="info-icon">📍</div>
+      <div class="info-content">
+        <div class="info-label">Localisation</div>
+        <div class="info-value" id="loc">—</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    Système d'inventaire — MoB BSK
+  </div>
+</div>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const code = params.get('code') || 'BSK-MOB-001';
+  const type = params.get('type') || 'Bureau';
+  const aff = params.get('aff') || 'Non affecté';
+  const svc = params.get('svc') || 'Stock';
+  const loc = params.get('loc') || 'Stock RDC';
+
+  document.getElementById('code').textContent = code;
+  document.getElementById('type').textContent = type;
+  document.getElementById('aff').textContent = aff;
+  document.getElementById('svc').textContent = svc;
+  document.getElementById('loc').textContent = loc;
+
+  const t = type.toLowerCase();
+  let icon = '📦';
+  if(t.includes('bureau') || t.includes('table') || t.includes('chaise')) icon = '🪑';
+  else if(t.includes('pc') || t.includes('ordinateur') || t.includes('laptop')) icon = '💻';
+  else if(t.includes('imprimante')) icon = '🖨️';
+  else if(t.includes('téléphone') || t.includes('tel')) icon = '📞';
+  document.getElementById('icon').textContent = icon;
+</script>
+
+</body>
+</html>
