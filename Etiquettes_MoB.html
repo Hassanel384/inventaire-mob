@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Générateur d'Étiquettes Inventaire MoB</title>
+
+  <!-- Libraries -->
+  <script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+    :root {
+      --bg: #0d1117;
+      --card: #161b22;
+      --card-hover: #1f242d;
+      --border: #30363d;
+      --accent: #6366f1;
+      --accent2: #06b6d4;
+      --green: #10b981;
+      --orange: #f59e0b;
+      --text: #f0f6fc;
+      --muted: #8b949e;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    header {
+      background: linear-gradient(135deg, #161b22, #0d1117);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 32px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 16px;
+    }
+
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .brand-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; box-shadow: 0 4px 14px rgba(99,102,241,0.4);
+    }
+    .brand h1 { font-size: 19px; font-weight: 800; }
+    .brand p { font-size: 12px; color: var(--muted); }
+
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 24px 20px; }
+
+    /* Configuration URL GitHub Pages */
+    .github-cfg {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 20px;
+      margin-bottom: 20px;
+      display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+    }
+    .github-cfg label { font-size: 12px; font-weight: 700; color: var(--accent2); text-transform: uppercase; letter-spacing: 0.5px; }
+    .github-cfg input {
+      flex: 1; min-width: 260px; background: var(--bg); border: 1px solid var(--border);
+      color: var(--text); padding: 8px 14px; border-radius: 8px; font-family: monospace; font-size: 13px;
+    }
+
+    /* Controls Bar */
+    .bar {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 18px 20px; margin-bottom: 24px;
+      display: flex; flex-wrap: wrap; gap: 14px; align-items: flex-end;
+    }
+    .grp { display: flex; flex-direction: column; gap: 6px; flex: 1; min-width: 160px; }
+    .grp label { font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; }
+
+    select, input[type=text] {
+      background: var(--bg); border: 1px solid var(--border);
+      color: var(--text); padding: 9px 12px; border-radius: 8px;
+      font: 14px 'Inter', sans-serif; transition: border-color .2s; outline: none;
+    }
+    select:focus, input[type=text]:focus { border-color: var(--accent); }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 20px; border-radius: 10px; border: none;
+      font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700;
+      cursor: pointer; transition: all 0.2s; white-space: nowrap;
+    }
+    .btn-primary { background: linear-gradient(135deg, var(--accent), #4f46e5); color: #fff; box-shadow: 0 4px 14px rgba(99,102,241,.3); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(99,102,241,.5); }
+    .btn-green { background: linear-gradient(135deg, var(--green), #059669); color: #fff; box-shadow: 0 4px 14px rgba(16,185,129,.3); }
+    .btn-green:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(16,185,129,.5); }
+    .btn-ghost { background: transparent; border: 1px solid var(--border); color: var(--muted); }
+    .btn-ghost:hover { border-color: var(--text); color: var(--text); }
+
+    /* Stats Cards */
+    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; margin-bottom: 24px; }
+    .stat { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 16px; text-align: center; }
+    .stat .n { font-size: 26px; font-weight: 800; }
+    .stat .l { font-size: 11px; color: var(--muted); margin-top: 4px; text-transform: uppercase; letter-spacing: .5px; }
+    .blue .n { color: var(--accent); }
+    .cyan .n { color: var(--accent2); }
+    .grn .n { color: var(--green); }
+    .org .n { color: var(--orange); }
+
+    /* Progress bar */
+    .pbar { display: none; height: 4px; background: var(--border); border-radius: 2px; margin: 14px 0; overflow: hidden; }
+    .pbar.on { display: block; }
+    .pfill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent2)); transition: width .3s; }
+
+    /* Preview Section */
+    .sec-head { font-size: 16px; font-weight: 800; margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between; }
+    .chip { background: rgba(99,102,241,.2); color: var(--accent2); font-size: 12px; padding: 4px 12px; border-radius: 20px; font-weight: 700; }
+
+    .preview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 16px; max-height: 600px; overflow-y: auto; padding: 4px;
+    }
+
+    .pcard {
+      background: #ffffff;
+      color: #111827;
+      border: 1.5px solid #d1d5db;
+      border-radius: 10px;
+      padding: 14px 10px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 8px; text-align: center; transition: all .2s; box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .pcard .label-name {
+      font-size: 13px; font-weight: 900; color: #111827;
+      text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 2px;
+    }
+    .pcard .code-render {
+      background: #fff; padding: 4px; border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      min-height: 90px; width: 100%;
+    }
+    .pcard .code-render canvas, .pcard .code-render svg {
+      max-width: 100%; height: auto; display: block; margin: 0 auto;
+    }
+    /* Fix QRCode.js double-render bug: hide the img element, keep only canvas */
+    .pcard .code-render img { display: none !important; }
+    .pcard .code-num {
+      font-size: 11px; font-weight: 800; color: #1f2937;
+      letter-spacing: 1.2px; font-family: 'Courier New', monospace; margin-top: 2px;
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed; bottom: 24px; right: 24px; background: var(--card);
+      border: 1px solid var(--border); border-radius: 12px; padding: 12px 20px;
+      font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+      box-shadow: 0 16px 48px rgba(0,0,0,.6); z-index: 999;
+      transform: translateX(140%); transition: transform .35s cubic-bezier(.34,1.56,.64,1);
+    }
+    .toast.on { transform: translateX(0); }
+    .toast.ok { border-color: var(--green); color: var(--green); }
+    .toast.err { border-color: #ef4444; color: #ef4444; }
+
+    /* ════════════════════════════════════════
+       A4 PRINT LAYOUT (GRID 3 COLUMNS)
+    ════════════════════════════════════════ */
+    #printArea { display: none; }
+
+    @media print {
+      /* ═══ FORMAT XPEDIA 485D44254 : 48,5 × 25,4 mm — 4 col × 11 lignes = 44 étiquettes/A4 ═══ */
+      @page {
+        size: A4 portrait;
+        margin: 13mm 4.75mm 13mm 4.75mm; /* marges standard planche 48.5×25.4mm */
+      }
+      * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+      body { background: #ffffff !important; margin: 0 !important; padding: 0 !important; font-family: Arial, Helvetica, sans-serif !important; }
+      header, .wrap, .toast { display: none !important; }
+      #printArea { display: block !important; }
+
+      .print-page {
+        width: 200.5mm;          /* 4 × 48.5mm + 3 × 0mm gap = 194mm dans zone utile */
+        display: grid;
+        grid-template-columns: repeat(4, 48.5mm);
+        grid-template-rows: repeat(11, 25.4mm);
+        gap: 0mm;               /* pas d'espace entre étiquettes (planche continue) */
+        padding: 0;
+        box-sizing: border-box;
+        page-break-after: always;
+        align-content: start;
+      }
+
+      .print-label {
+        width: 48.5mm;
+        height: 25.4mm;
+        border: 0.4px solid #cccccc;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 1mm 1.5mm;
+        box-sizing: border-box;
+        background: #ffffff;
+        text-align: center;
+        overflow: hidden;
+      }
+
+      .lbl-name {
+        font-size: 6.5pt;
+        font-weight: 900;
+        color: #000000;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+        line-height: 1;
+        margin-bottom: 0.5mm;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 45mm;
+      }
+
+      .lbl-render {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        flex: 1;
+        overflow: hidden;
+      }
+
+      /* QR Code : max 14mm × 14mm pour tenir dans 25.4mm de haut */
+      .lbl-render canvas {
+        width: 14mm !important;
+        height: 14mm !important;
+        display: block !important;
+        margin: 0 auto !important;
+      }
+      .lbl-render img { display: none !important; }
+
+      /* Code-barres 1D : largeur max, hauteur réduite */
+      .lbl-render svg {
+        width: 45mm !important;
+        height: 11mm !important;
+        display: block !important;
+      }
+
+      .lbl-code {
+        font-size: 5.5pt;
+        font-weight: 800;
+        color: #111827;
+        letter-spacing: 0.8px;
+        text-align: center;
+        font-family: 'Courier New', Courier, monospace;
+        margin-top: 0.3mm;
+        white-space: nowrap;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <div class="brand-icon">🖨️</div>
+    <div>
+      <h1>Générateur d'Étiquettes MoB (A4 — 3 Colonnes)</h1>
+      <p>Impression par département · Scannable par smartphone</p>
+    </div>
+  </div>
+  <div style="display:flex; gap:10px;">
+    <label class="btn btn-ghost" style="cursor:pointer; font-size:13px;">
+      📂 Changer de fichier Excel
+      <input type="file" id="xlsxInput" accept=".xlsx,.xls" style="display:none" onchange="loadXLSX(event)"/>
+    </label>
+    <a href="index.html" class="btn btn-primary" style="text-decoration:none;">📱 Fiche / Scanner</a>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="github-cfg">
+    <label>🌐 Lien GitHub Pages (Lien direct du QR Code) :</label>
+    <input type="text" id="ghUrl" value="https://hassanel384.github.io/inventaire-mob"/>
+  </div>
+
+  <div class="bar">
+    <div class="grp">
+      <label>🏢 Service / Département</label>
+      <select id="fSvc" onchange="filter()"><option value="">Tous les services</option></select>
+    </div>
+    <div class="grp">
+      <label>📍 Localisation</label>
+      <select id="fLoc" onchange="filter()"><option value="">Toutes les localisations</option></select>
+    </div>
+    <div class="grp">
+      <label>🔍 Recherche Code / Nom</label>
+      <input type="text" id="search" placeholder="Ex: BSK-MOB-001, Bureau..." oninput="filter()"/>
+    </div>
+    <div class="grp">
+      <label>🏷️ Type de Code</label>
+      <select id="codeType" onchange="filter()">
+        <option value="qr">Code QR (Caméra Smartphone Directe)</option>
+        <option value="barcode">Code-Barres 1D (Code 128)</option>
+      </select>
+    </div>
+    <div style="display:flex; gap:10px; align-items:center;">
+      <button class="btn btn-ghost" onclick="resetF()" title="Réinitialiser les filtres">↺</button>
+      <button class="btn btn-green" id="printBtn" onclick="doPrint()">🖨️ Imprimer Étiquettes (A4)</button>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat blue"><div class="n" id="sTotal">0</div><div class="l">Articles Sélectionnés</div></div>
+    <div class="stat cyan"><div class="n" id="sSvcCount">0</div><div class="l">Départements</div></div>
+    <div class="stat grn"><div class="n" id="sPages">0</div><div class="l">Pages A4 (21/page)</div></div>
+  </div>
+
+  <div class="pbar" id="pbar"><div class="pfill" id="pfill" style="width:0%"></div></div>
+
+  <div id="prevSec">
+    <div class="sec-head">
+      <span>Aperçu des étiquettes <span class="chip" id="cnt">0 étiquettes</span></span>
+    </div>
+    <div class="preview-grid" id="pg"></div>
+  </div>
+
+</div>
+
+<div id="printArea"></div>
+<div class="toast" id="toast"><span id="tm"></span></div>
+
+<script>
+let all = [], shown = [];
+
+// Base de données intégrée par défaut si pas d'upload Excel
+const embeddedData = [
+  {"Inventaire":"BSK-MOB-001 Bureau (Comptoir)","Affectation":"Zineb","Service":"RH","Localisation":"Accueille"},
+  {"Inventaire":"BSK-MOB-002 Bureau (Comptoir)","Affectation":"Stock","Service":"Stock","Localisation":"Stock 1er Etage"},
+  {"Inventaire":"BSK-MOB-003 Bureau","Affectation":"Youssef","Service":"Stock","Localisation":"bureau stock"},
+  {"Inventaire":"BSK-MOB-004 Bureau","Affectation":"Mohammed","Service":"Stock","Localisation":"bureau stock"},
+  {"Inventaire":"BSK-MOB-005 Bureau","Affectation":"Stock","Service":"Stock","Localisation":"Stock RDC"},
+  {"Inventaire":"BSK-MOB-006 Bureau","Affectation":"Stock","Service":"Stock","Localisation":"Stock RDC"},
+  {"Inventaire":"BSK-MOB-007 Bureau","Affectation":"Stock","Service":"Stock","Localisation":"Stock RDC"},
+  {"Inventaire":"BSK-MOB-008 Bureau","Affectation":"Stock","Service":"Stock","Localisation":"Stock 1er Etage"},
+  {"Inventaire":"BSK-MOB-009 Bureau","Affectation":"technique","Service":"technique","Localisation":"Zone contrôle matériel"},
+  {"Inventaire":"BSK-MOB-010 Bureau","Affectation":"Rabie","Service":"technique","Localisation":"Local technique"},
+  {"Inventaire":"BSK-MOB-011 Bureau","Affectation":"Idriss","Service":"technique","Localisation":"Local technique"},
+  {"Inventaire":"BSK-MOB-012 Bureau","Affectation":"Mohammed","Service":"technique","Localisation":"Local technique"},
+  {"Inventaire":"BSK-MOB-013 Bureau","Affectation":"Oussama","Service":"technique","Localisation":"Local technique"},
+  {"Inventaire":"BSK-MOB-014 Bureau","Affectation":"Ismail","Service":"technique","Localisation":"Local technique"},
+  {"Inventaire":"BSK-MOB-015 Bureau","Affectation":"Mostafa","Service":"technique","Localisation":"Local technique"},
+  {"Inventaire":"BSK-MOB-016 Bureau","Affectation":"khalid","Service":"technique","Localisation":"Local technique"},
+  {"Inventaire":"BSK-MOB-017 Bureau","Affectation":"Hsanaa","Service":"RH","Localisation":"2eme Etage"},
+  {"Inventaire":"BSK-MOB-018 Bureau","Affectation":"Hsanaa","Service":"RH","Localisation":"2eme Etage"},
+  {"Inventaire":"BSK-MOB-019 Bureau","Affectation":"Hiba","Service":"Achat","Localisation":"2eme Etage"},
+  {"Inventaire":"BSK-MOB-020 Bureau","Affectation":"Aicha","Service":"Achat","Localisation":"2eme Etage"},
+  {"Inventaire":"BSK-MOB-021 Bureau","Affectation":"Ayoub","Service":"Achat","Localisation":"2eme Etage"},
+  {"Inventaire":"BSK-MOB-022 Bureau","Affectation":"Rachida","Service":"Comptabilité","Localisation":"2eme Etage"},
+  {"Inventaire":"BSK-MOB-023 Bureau","Affectation":"Amina","Service":"Comptabilité","Localisation":"2eme Etage"},
+  {"Inventaire":"BSK-MOB-024 Bureau","Affectation":"Comptabilité","Service":"Comptabilité","Localisation":"2eme Etage"},
+  {"Inventaire":"BSK-MOB-025 Bureau","Affectation":"Ghizlane","Service":"A.O","Localisation":"2eme Etage"},
+  {"Inventaire":"BSK-MOB-026 Bureau","Affectation":"Asmaa","Service":"A.O","Localisation":"2eme Etage"},
+  {"Inventaire":"BSK-MOB-027 Bureau","Affectation":"Intissar","Service":"A.O","Localisation":"2eme Etage"},
+  {"Inventaire":"BSK-MOB-028 Bureau","Affectation":"Meriam","Service":"A.R","Localisation":"2eme Etage"},
+  {"Inventaire":"BSK-MOB-029 Bureau","Affectation":"Zineb","Service":"A.R","Localisation":"2eme Etage"},
+  {"Inventaire":"BSK-MOB-030 Bureau","Affectation":"Oumaima","Service":"Commercial","Localisation":"2eme Etage"},
+  {"Inventaire":"BSK-MOB-031 Bureau","Affectation":"Khadija","Service":"Commercial","Localisation":"2eme Etage"},
+  {"Inventaire":"BSK-MOB-032 Bureau","Affectation":"Sara","Service":"Commercial","Localisation":"2eme Etage"},
+  {"Inventaire":"BSK-MOB-033 Bureau","Affectation":"Souhaila","Service":"Commercial","Localisation":"2eme Etage"}
+];
+
+// Initialisation au chargement de la page
+window.addEventListener('DOMContentLoaded', async () => {
+  try {
+    const res = await fetch('inventaire_data.json');
+    if(res.ok) {
+      const data = await res.json();
+      parseRawData(data);
+      return;
+    }
+  } catch(e) {}
+  parseRawData(embeddedData);
+});
+
+function parseRawData(dataArray) {
+  all = [];
+  dataArray.forEach(item => {
+    const raw = String(item.Inventaire || item.code || '').trim();
+    if(!raw) return;
+    const sp = raw.indexOf(' ');
+    const code = sp > -1 ? raw.slice(0, sp) : raw;
+    const type = sp > -1 ? raw.slice(sp + 1) : (item.type || 'Article');
+    all.push({
+      code: code,
+      type: type,
+      aff: String(item.Affectation || item.aff || '').trim(),
+      svc: String(item.Service || item.svc || '').trim(),
+      loc: String(item.Localisation || item.loc || '').trim()
+    });
+  });
+
+  initUI();
+  toast(`✅ ${all.length} articles chargés avec succès`, 'ok');
+}
+
+function loadXLSX(e) {
+  const f = e.target.files[0]; if (!f) return;
+  toast('⏳ Chargement du fichier...', 'info');
+  const r = new FileReader();
+  r.onload = ev => {
+    try {
+      const wb = XLSX.read(ev.target.result, {type:'array'});
+      const ws = wb.Sheets[wb.SheetNames[0]];
+      const rows = XLSX.utils.sheet_to_json(ws, {header:1, defval:''});
+      const h = rows[0].map(x => String(x).toLowerCase().trim());
+
+      let cInv=-1,cAff=-1,cSvc=-1,cLoc=-1;
+      h.forEach((v,i)=>{
+        if(v.includes('inventaire')||v.includes('num')||v.includes('code')) cInv=i;
+        else if(v.includes('affectation')) cAff=i;
+        else if(v.includes('service')||v.includes('département')) cSvc=i;
+        else if(v.includes('localisation')||v.includes('local')) cLoc=i;
+      });
+
+      const list = [];
+      for(let r2=1;r2<rows.length;r2++){
+        const row=rows[r2];
+        const raw=String(row[cInv]||'').trim();
+        if(!raw) continue;
+        list.push({
+          Inventaire: raw,
+          Affectation: row[cAff]||'',
+          Service: row[cSvc]||'',
+          Localisation: row[cLoc]||''
+        });
+      }
+      parseRawData(list);
+    } catch(ex){ toast('❌ Fichier non valide', 'err'); }
+  };
+  r.readAsArrayBuffer(f);
+}
+
+function initUI(){
+  const uniq=(k)=>[...new Set(all.map(d=>d[k]).filter(Boolean))].sort();
+  fillSel('fSvc', uniq('svc'), 'Tous les services');
+  fillSel('fLoc', uniq('loc'), 'Toutes les localisations');
+  filter();
+}
+
+function fillSel(id, vals, ph){
+  const s=document.getElementById(id);
+  s.innerHTML=`<option value="">${ph}</option>`;
+  vals.forEach(v=>{ const o=document.createElement('option'); o.value=o.textContent=v; s.appendChild(o); });
+}
+
+function filter(){
+  const sv=document.getElementById('fSvc').value;
+  const lv=document.getElementById('fLoc').value;
+  const q=document.getElementById('search').value.toLowerCase();
+
+  shown = all.filter(d=>{
+    if(sv && d.svc!==sv) return false;
+    if(lv && d.loc!==lv) return false;
+    if(q && !`${d.code} ${d.type} ${d.aff} ${d.svc} ${d.loc}`.toLowerCase().includes(q)) return false;
+    return true;
+  });
+
+  updateStats();
+  renderPreview();
+}
+
+function resetF(){
+  document.getElementById('fSvc').value='';
+  document.getElementById('fLoc').value='';
+  document.getElementById('search').value='';
+  filter();
+}
+
+function updateStats(){
+  document.getElementById('sTotal').textContent = shown.length;
+  const svcs = [...new Set(shown.map(d=>d.svc).filter(Boolean))];
+  document.getElementById('sSvcCount').textContent = svcs.length || 1;
+  document.getElementById('sPages').textContent = Math.ceil(shown.length / 44); // 44 étiquettes/page format 48.5×25.4mm
+  document.getElementById('cnt').textContent = shown.length + ' étiquettes';
+}
+
+function getPayload(item){
+  const baseUrl = document.getElementById('ghUrl').value.replace(/\/$/,'');
+  const u = new URL(baseUrl + '/index.html');
+  u.searchParams.set('code', item.code);
+  u.searchParams.set('type', item.type);
+  u.searchParams.set('aff',  item.aff);
+  u.searchParams.set('svc',  item.svc);
+  u.searchParams.set('loc',  item.loc);
+  return u.toString();
+}
+
+function renderPreview(){
+  const g=document.getElementById('pg');
+  g.innerHTML='';
+  const type = document.getElementById('codeType').value;
+
+  const preview = shown.slice(0, 30);
+  preview.forEach((item,i)=>{
+    const c=document.createElement('div');
+    c.className='pcard';
+    const renderId=`pv_${i}`;
+    const nom = (item.type || item.code).toUpperCase();
+
+    c.innerHTML=`
+      <div class="label-name">${nom}</div>
+      <div class="code-render" id="${renderId}"></div>
+      <div class="code-num">${item.code}</div>
+    `;
+    g.appendChild(c);
+
+    setTimeout(()=>{
+      const target = document.getElementById(renderId);
+      if(!target) return;
+      if(type === 'barcode') {
+        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        target.appendChild(svg);
+        JsBarcode(svg, item.code, {
+          format: "CODE128",
+          displayValue: false,
+          height: 45,
+          margin: 2
+        });
+      } else {
+        new QRCode(target, {
+          text: getPayload(item),
+          width: 86, height: 86,
+          colorDark: '#000000', colorLight: '#ffffff',
+          correctLevel: QRCode.CorrectLevel.M
+        });
+      }
+    }, i * 4);
+  });
+
+  if(shown.length > 30){
+    const m=document.createElement('div');
+    m.style.cssText='grid-column:1/-1;text-align:center;padding:16px;color:var(--muted);font-size:13px;';
+    m.textContent=`+ ${shown.length - 30} autres étiquettes incluses lors de l'impression`;
+    g.appendChild(m);
+  }
+}
+
+async function doPrint(){
+  if(!shown.length){ toast('⚠️ Aucun article sélectionné', 'err'); return; }
+  const btn=document.getElementById('printBtn');
+  btn.disabled=true; btn.textContent='⏳ Génération du PDF...';
+  const pb=document.getElementById('pbar'); pb.classList.add('on');
+  document.getElementById('pfill').style.width='0%';
+
+  const pa=document.getElementById('printArea'); pa.innerHTML='';
+  const type = document.getElementById('codeType').value;
+  const PER = 44; // Format 48.5×25.4mm : 4 colonnes × 11 lignes = 44 étiquettes/page
+  const pages = Math.ceil(shown.length / PER);
+
+  for(let p=0; p<pages; p++){
+    const pg=document.createElement('div'); pg.className='print-page';
+    const items = shown.slice(p * PER, (p + 1) * PER);
+
+    items.forEach((item, idx) => {
+      const lbl=document.createElement('div'); lbl.className='print-label';
+      const nom = (item.type || item.code).toUpperCase();
+      const rId = `pr_${p}_${idx}`;
+
+      lbl.innerHTML=`
+        <div class="lbl-name">${nom}</div>
+        <div class="lbl-render" id="${rId}"></div>
+        <div class="lbl-code">${item.code}</div>
+      `;
+      pg.appendChild(lbl);
+    });
+
+    pa.appendChild(pg);
+  }
+
+  // Rendu asynchrone des codes QR / Barcodes pour l'impression
+  await new Promise(resolve => {
+    let done = 0;
+    shown.forEach((item, idx) => {
+      const p = Math.floor(idx / PER);
+      const subIdx = idx % PER;
+      const rId = `pr_${p}_${subIdx}`;
+      const target = document.getElementById(rId);
+
+      if(!target){ done++; if(done===shown.length) resolve(); return; }
+
+      setTimeout(() => {
+        if(type === 'barcode') {
+          const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+          target.appendChild(svg);
+          JsBarcode(svg, item.code, {
+            format: "CODE128",
+            displayValue: false,
+            height: 30,  // hauteur réduite pour 25.4mm
+            margin: 1
+          });
+        } else {
+          new QRCode(target, {
+            text: getPayload(item),
+            width: 53, height: 53, // ~14mm à 96dpi pour étiquette 25.4mm
+            colorDark: '#000000', colorLight: '#ffffff',
+            correctLevel: QRCode.CorrectLevel.M
+          });
+        }
+
+        done++;
+        document.getElementById('pfill').style.width = Math.round((done / shown.length) * 100) + '%';
+        if(done === shown.length) resolve();
+      }, idx * 3);
+    });
+  });
+
+  await new Promise(r => setTimeout(r, 300));
+  btn.disabled=false; btn.textContent='🖨️ Imprimer Étiquettes (A4)';
+  pb.classList.remove('on');
+
+  toast(`✅ ${shown.length} étiquettes prêtes !`, 'ok');
+  window.print();
+}
+
+function toast(msg, type){
+  const t=document.getElementById('toast');
+  document.getElementById('tm').textContent=msg;
+  t.className='toast on ' + (type==='ok'?'ok':type==='err'?'err':'');
+  setTimeout(()=>t.className='toast', 3200);
+}
+</script>
+</body>
+</html>
