@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-  <title>MoB BSK â€” Fiche Ã‰quipement Inventaire</title>
+  <title>MoB BSK &#8212; Fiche &#201;quipement Inventaire</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
@@ -152,6 +152,7 @@
       color: #ffffff;
       box-shadow: 0 10px 25px rgba(16, 185, 129, 0.35);
     }
+    .btn-check:active { transform: scale(0.98); }
     .btn-check.checked {
       background: rgba(16, 185, 129, 0.2);
       border: 1px solid var(--green);
@@ -159,20 +160,12 @@
       box-shadow: none;
     }
 
-    .btn-scanner {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border);
-      color: var(--muted);
-      font-size: 13px;
-      padding: 12px;
-      text-decoration: none;
-    }
-
     .status-msg {
       font-size: 12px;
       color: var(--green);
       font-weight: 700;
-      margin-top: 10px;
+      margin-top: -4px;
+      margin-bottom: 12px;
       display: none;
     }
 
@@ -191,54 +184,51 @@
   <div class="glow-bg"></div>
 
   <div class="content">
-    <div class="header-badge">ðŸ“¦ Inventaire MoB BSK</div>
-    <div class="icon-box" id="icon">ðŸ“¦</div>
+    <div class="header-badge">&#128230; Inventaire MoB BSK</div>
+    <div class="icon-box" id="icon">&#128230;</div>
     <h1 class="title" id="type">Article</h1>
     <div class="code" id="code">BSK-MOB-001</div>
 
     <div class="info-list">
       <div class="info-item">
-        <div class="info-icon">ðŸ‘¤</div>
+        <div class="info-icon">&#128100;</div>
         <div class="info-content">
-          <div class="info-label">AffectÃ© Ã </div>
-          <div class="info-value" id="aff">Non affectÃ©</div>
+          <div class="info-label">Affect&#233; &#224;</div>
+          <div class="info-value" id="aff">Non affect&#233;</div>
         </div>
       </div>
 
       <div class="info-item">
-        <div class="info-icon">ðŸ¢</div>
+        <div class="info-icon">&#127962;</div>
         <div class="info-content">
-          <div class="info-label">Service / DÃ©partement</div>
-          <div class="info-value" id="svc">â€”</div>
+          <div class="info-label">Service / D&#233;partement</div>
+          <div class="info-value" id="svc">&#8212;</div>
         </div>
       </div>
 
       <div class="info-item">
-        <div class="info-icon">ðŸ“</div>
+        <div class="info-icon">&#128205;</div>
         <div class="info-content">
           <div class="info-label">Localisation</div>
-          <div class="info-value" id="loc">â€”</div>
+          <div class="info-value" id="loc">&#8212;</div>
         </div>
       </div>
     </div>
 
     <button class="btn-action btn-check" id="checkBtn" onclick="toggleCheck()">
-      <span id="checkIcon">âœ…</span> <span id="checkText">Marquer comme vÃ©rifiÃ© aujourd'hui</span>
+      <span id="checkIcon">&#10003;</span>
+      <span id="checkText">Marquer comme v&#233;rifi&#233; aujourd&#39;hui</span>
     </button>
-    <div class="status-msg" id="statusMsg">âœ¨ Ã‰quipement vÃ©rifiÃ© et enregistrÃ© !</div>
-
-    <a href="Scanner_MoB.html" class="btn-action btn-scanner">
-      ðŸ“· Ouvrir le scanner camÃ©ra
-    </a>
+    <div class="status-msg" id="statusMsg">&#10003; Enregistr&#233; avec succ&#232;s !</div>
 
     <div class="footer">
-      SystÃ¨me d'inventaire MoB Â· ScannÃ© directement via appareil photo
+      Syst&#232;me d&#39;inventaire MoB &middot; Scann&#233; via appareil photo
     </div>
   </div>
 </div>
 
 <script>
-  // Base de donnÃ©es intÃ©grÃ©e pour fonctionnement 100% autonome
+  // Base de donnees integree - 562 articles
   const INVENTORY_DB = [
     {
         "Inventaire":  "BSK-MOB-001 Bureau (Comptoir)",
@@ -3612,73 +3602,80 @@
         "Service":  "stock",
         "Localisation":  "RDC"
     }
-]
-;
+];
 
   let currentCode = '';
 
-  window.addEventListener('DOMContentLoaded', () => {
-    const params = new URLSearchParams(window.location.search);
-    let codeParam = params.get('code') || 'BSK-MOB-001';
-    let typeParam = params.get('type');
-    let affParam  = params.get('aff');
-    let svcParam  = params.get('svc');
-    let locParam  = params.get('loc');
+  window.addEventListener('DOMContentLoaded', function() {
+    var params = new URLSearchParams(window.location.search);
+    var codeParam = params.get('code') || 'BSK-MOB-001';
 
     currentCode = codeParam;
 
-    // Recherche dans la base intÃ©grÃ©e
-    // Recherche dans la base intégrée
-    const found = INVENTORY_DB.find(d => {
-      const raw = String(d.Inventaire || d.code || '');
-      return raw.startsWith(codeParam) || raw.includes(codeParam);
-    });
-
-    let finalType = typeParam;
-    let finalAff  = affParam;
-    let finalSvc  = svcParam;
-    let finalLoc  = locParam;
-
-    if (found) {
-      const raw = String(found.Inventaire || '');
-      const sp = raw.indexOf(' ');
-      if (!finalType) finalType = sp > -1 ? raw.slice(sp + 1) : 'Article';
-      if (!finalAff)  finalAff  = found.Affectation;
-      if (!finalSvc)  finalSvc  = found.Service;
-      if (!finalLoc)  finalLoc  = found.Localisation;
+    // Recherche dans la base integree
+    var found = null;
+    for (var i = 0; i < INVENTORY_DB.length; i++) {
+      var raw = String(INVENTORY_DB[i].Inventaire || INVENTORY_DB[i].code || '');
+      if (raw.startsWith(codeParam) || raw.indexOf(codeParam) !== -1) {
+        found = INVENTORY_DB[i];
+        break;
+      }
     }
 
-    // Sécurisation de l'affichage
+    var finalType = '';
+    var finalAff  = '';
+    var finalSvc  = '';
+    var finalLoc  = '';
+
+    if (found) {
+      var raw = String(found.Inventaire || '');
+      var sp = raw.indexOf(' ');
+      finalType = sp > -1 ? raw.slice(sp + 1) : 'Article';
+      finalAff  = String(found.Affectation || '').trim();
+      finalSvc  = String(found.Service || '').trim();
+      finalLoc  = String(found.Localisation || '').trim();
+    }
+
     document.getElementById('code').textContent = codeParam;
     document.getElementById('type').textContent = finalType || 'Article';
-    document.getElementById('aff').textContent  = finalAff || 'Non affecté';
-    document.getElementById('svc').textContent  = finalSvc || '—';
-    document.getElementById('loc').textContent  = finalLoc || '—';
+    document.getElementById('aff').textContent  = finalAff  || 'Non affect\u00e9';
+    document.getElementById('svc').textContent  = finalSvc  || '\u2014';
+    document.getElementById('loc').textContent  = finalLoc  || '\u2014';
 
-    // Icône dynamique
-    const t = (finalType || '').toLowerCase();
-    let icon = '📦';
-    if (t.includes('bureau') || t.includes('table') || t.includes('chaise')) icon = '🪑';
-    else if (t.includes('pc') || t.includes('ordinateur') || t.includes('laptop')) icon = '💻';
-    else if (t.includes('imprimante')) icon = '🖨️';
-    else if (t.includes('téléphone') || t.includes('tel')) icon = '📞';
-    else if (t.includes('placard') || t.includes('armoire') || t.includes('caisson')) icon = '🗄️';
-    else if (t.includes('chariot')) icon = '🛒';
-    else if (t.includes('pointeuse')) icon = '⏰';
+    // Icone selon le type d'article (HTML entities dans JS)
+    var t = (finalType || '').toLowerCase();
+    var icon = '\u{1F4E6}';
+    if (t.indexOf('bureau') !== -1 || t.indexOf('chaise') !== -1 || t.indexOf('table') !== -1) {
+      icon = '\u{1FA91}';
+    } else if (t.indexOf('pc') !== -1 || t.indexOf('ordinateur') !== -1 || t.indexOf('laptop') !== -1) {
+      icon = '\u{1F4BB}';
+    } else if (t.indexOf('imprimante') !== -1) {
+      icon = '\u{1F5A8}';
+    } else if (t.indexOf('t\u00e9l\u00e9phone') !== -1 || t.indexOf('tel') !== -1) {
+      icon = '\u{1F4DE}';
+    } else if (t.indexOf('placard') !== -1 || t.indexOf('armoire') !== -1 || t.indexOf('caisson') !== -1) {
+      icon = '\u{1F5C4}';
+    } else if (t.indexOf('chariot') !== -1) {
+      icon = '\u{1F6D2}';
+    } else if (t.indexOf('pointeuse') !== -1) {
+      icon = '\u23F0';
+    } else if (t.indexOf('moniteur') !== -1 || t.indexOf('ecran') !== -1) {
+      icon = '\u{1F5A5}';
+    }
     document.getElementById('icon').textContent = icon;
 
     checkSavedStatus();
   });
 
   function checkSavedStatus() {
-    const history = JSON.parse(localStorage.getItem('mob_history') || '[]');
-    const isChecked = history.some(h => h.code === currentCode);
+    var history = JSON.parse(localStorage.getItem('mob_history') || '[]');
+    var isChecked = history.some(function(h) { return h.code === currentCode; });
     if (isChecked) setBtnChecked();
   }
 
   function toggleCheck() {
-    let history = JSON.parse(localStorage.getItem('mob_history') || '[]');
-    const idx = history.findIndex(h => h.code === currentCode);
+    var history = JSON.parse(localStorage.getItem('mob_history') || '[]');
+    var idx = history.findIndex(function(h) { return h.code === currentCode; });
 
     if (idx > -1) {
       history.splice(idx, 1);
@@ -3699,18 +3696,18 @@
   }
 
   function setBtnChecked() {
-    const btn = document.getElementById('checkBtn');
+    var btn = document.getElementById('checkBtn');
     btn.className = 'btn-action btn-check checked';
-    document.getElementById('checkIcon').textContent = '✔';
-    document.getElementById('checkText').textContent = 'Vérifié & Présent';
+    document.getElementById('checkIcon').textContent = '\u2714';
+    document.getElementById('checkText').textContent = 'V\u00e9rifi\u00e9 & Pr\u00e9sent';
     document.getElementById('statusMsg').style.display = 'block';
   }
 
   function setBtnUnchecked() {
-    const btn = document.getElementById('checkBtn');
+    var btn = document.getElementById('checkBtn');
     btn.className = 'btn-action btn-check';
-    document.getElementById('checkIcon').textContent = 'âœ…';
-    document.getElementById('checkText').textContent = 'Marquer comme vÃ©rifiÃ© aujourd\'hui';
+    document.getElementById('checkIcon').textContent = '\u2713';
+    document.getElementById('checkText').textContent = 'Marquer comme v\u00e9rifi\u00e9 aujourd\'hui';
     document.getElementById('statusMsg').style.display = 'none';
   }
 </script>
