@@ -92,11 +92,12 @@
 
     .code {
       font-family: 'Courier New', monospace;
-      font-size: 15px;
+      font-size: 14px;
       color: var(--cyan);
       font-weight: 800;
-      letter-spacing: 1.5px;
+      letter-spacing: 1px;
       margin-bottom: 24px;
+      word-break: break-word;
     }
 
     .info-list {
@@ -4280,7 +4281,7 @@
 
     currentCode = codeParam;
 
-    // 1. Recherche exacte par nom d'inventaire complet (ex: "BSK-INF-002 Imprimante")
+    // 1. Recherche exacte par nom d'inventaire complet (ex: "BSK-INF-001 Poste ordinateur" ou "BSK-MOB-003 Bureau")
     var found = null;
     for (var i = 0; i < INVENTORY_DB.length; i++) {
       var raw = String(INVENTORY_DB[i].Inventaire || INVENTORY_DB[i].code || '').trim();
@@ -4290,7 +4291,7 @@
       }
     }
 
-    // 2. Si pas de correspondance exacte, recherche du code exact au debut
+    // 2. Si pas de correspondance exacte, recherche du prefixe au debut
     if (!found) {
       for (var i = 0; i < INVENTORY_DB.length; i++) {
         var raw = String(INVENTORY_DB[i].Inventaire || INVENTORY_DB[i].code || '').trim();
@@ -4303,7 +4304,7 @@
       }
     }
 
-    // 3. Fallback recherche partielle
+    // 3. Fallback recherche contient
     if (!found) {
       for (var i = 0; i < INVENTORY_DB.length; i++) {
         var raw = String(INVENTORY_DB[i].Inventaire || INVENTORY_DB[i].code || '').trim();
@@ -4314,17 +4315,18 @@
       }
     }
 
-    var finalType   = '';
-    var finalCodeNum = codeParam;
-    var finalAff    = '';
-    var finalSvc    = '';
-    var finalLoc    = '';
-    var finalMarque = '';
+    var finalType       = '';
+    var finalFullInv    = codeParam;
+    var finalAff        = '';
+    var finalSvc        = '';
+    var finalLoc        = '';
+    var finalMarque     = '';
 
     if (found) {
       var raw = String(found.Inventaire || '');
+      finalFullInv = raw; // NumÃ©ro d'inventaire complet (ex: "BSK-INF-001 Poste ordinateur")
+      
       var sp = raw.indexOf(' ');
-      finalCodeNum = sp > -1 ? raw.slice(0, sp) : raw;
       finalType    = sp > -1 ? raw.slice(sp + 1) : 'Article';
       finalAff     = String(found.Affectation || '').trim();
       finalSvc     = String(found.Service || '').trim();
@@ -4333,12 +4335,12 @@
     } else {
       var sp = codeParam.indexOf(' ');
       if (sp > -1) {
-        finalCodeNum = codeParam.slice(0, sp);
-        finalType    = codeParam.slice(sp + 1);
+        finalType = codeParam.slice(sp + 1);
       }
     }
 
-    document.getElementById('code').textContent   = finalCodeNum;
+    // Afficher le NumÃ©ro d'inventaire complet exact de l'Excel (ex: BSK-MOB-003 Bureau / BSK-INF-001 Poste ordinateur)
+    document.getElementById('code').textContent   = finalFullInv;
     document.getElementById('type').textContent   = finalType || 'Article';
     document.getElementById('aff').textContent    = finalAff  || 'Non affect\u00e9';
     document.getElementById('svc').textContent    = finalSvc  || '\u2014';

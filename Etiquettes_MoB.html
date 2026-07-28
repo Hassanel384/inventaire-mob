@@ -4507,10 +4507,11 @@ function renderPreview(){
     const renderId=`pv_${i}`;
     const nom = (item.type || item.code).toUpperCase();
 
+    const fullCodeStr = item.fullCode || (item.code + ' ' + item.type);
     c.innerHTML=`
       <div class="label-name">${nom}</div>
       <div class="code-render" id="${renderId}"></div>
-      <div class="code-num">${item.code}</div>
+      <div class="code-num">${fullCodeStr}</div>
     `;
     g.appendChild(c);
 
@@ -4566,10 +4567,11 @@ async function doPrint(){
       const nom = (item.type || item.code).toUpperCase();
       const rId = `pr_${p}_${idx}`;
 
+      const fullCodeStr = item.fullCode || (item.code + ' ' + item.type);
       lbl.innerHTML=`
         <div class="lbl-name">${nom}</div>
         <div class="lbl-render" id="${rId}"></div>
-        <div class="lbl-code">${item.code}</div>
+        <div class="lbl-code">${fullCodeStr}</div>
       `;
       pg.appendChild(lbl);
     });
