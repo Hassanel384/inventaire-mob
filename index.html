@@ -213,6 +213,14 @@
           <div class="info-value" id="loc">&#8212;</div>
         </div>
       </div>
+
+      <div class="info-item" id="marqueRow">
+        <div class="info-icon">&#127991;</div>
+        <div class="info-content">
+          <div class="info-label">Marque</div>
+          <div class="info-value" id="marque">&#8212;</div>
+        </div>
+      </div>
     </div>
 
     <button class="btn-action btn-check" id="checkBtn" onclick="toggleCheck()">
@@ -228,3379 +236,4039 @@
 </div>
 
 <script>
-  // Base de donnees integree - 562 articles
+  // Base de donnees integree - 576 articles
   const INVENTORY_DB = [
     {
         "Inventaire":  "BSK-MOB-001 Bureau (Comptoir)",
         "Affectation":  "Zineb",
         "Service":  "RH",
-        "Localisation":  "Accueille"
+        "Localisation":  "Accueille",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-002 Bureau (Comptoir)",
         "Affectation":  "Stock",
         "Service":  "Stock",
-        "Localisation":  "Stock 1er Etage"
+        "Localisation":  "Stock 1er Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-003 Bureau",
-        "Affectation":  "",
+        "Affectation":  "Youssef",
         "Service":  "Stock",
-        "Localisation":  "bureau stock"
+        "Localisation":  "bureau stock",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-004 Bureau",
         "Affectation":  "Mohammed",
         "Service":  "Stock",
-        "Localisation":  "bureau stock"
+        "Localisation":  "bureau stock",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-005 Bureau",
         "Affectation":  "Stock",
         "Service":  "Stock",
-        "Localisation":  "Stock RDC"
+        "Localisation":  "Stock RDC",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-006 Bureau",
         "Affectation":  "Stock",
         "Service":  "Stock",
-        "Localisation":  "Stock RDC"
+        "Localisation":  "Stock RDC",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-007 Bureau",
         "Affectation":  "Stock",
         "Service":  "Stock",
-        "Localisation":  "Stock RDC"
+        "Localisation":  "Stock RDC",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-008 Bureau",
         "Affectation":  "Stock",
         "Service":  "Stock",
-        "Localisation":  "Stock 1er Etage"
+        "Localisation":  "Stock 1er Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-009 Bureau",
         "Affectation":  "technique",
         "Service":  "technique",
-        "Localisation":  ""
+        "Localisation":  "Zone contrôle matériel",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-010 Bureau",
         "Affectation":  "Rabie",
         "Service":  "technique",
-        "Localisation":  "Local technique"
+        "Localisation":  "Local technique",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-011 Bureau",
         "Affectation":  "Idriss",
         "Service":  "technique",
-        "Localisation":  "Local technique"
+        "Localisation":  "Local technique",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-012 Bureau",
         "Affectation":  "Mohammed",
         "Service":  "technique",
-        "Localisation":  "Local technique"
+        "Localisation":  "Local technique",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-013 Bureau",
         "Affectation":  "Oussama",
         "Service":  "technique",
-        "Localisation":  "Local technique"
+        "Localisation":  "Local technique",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-014 Bureau",
         "Affectation":  "Ismail",
         "Service":  "technique",
-        "Localisation":  "Local technique"
+        "Localisation":  "Local technique",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-015 Bureau",
         "Affectation":  "Mostafa",
         "Service":  "technique",
-        "Localisation":  "Local technique"
+        "Localisation":  "Local technique",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-016 Bureau",
-        "Affectation":  "",
+        "Affectation":  "khalid",
         "Service":  "technique",
-        "Localisation":  "Local technique"
+        "Localisation":  "Local technique",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-017 Bureau",
         "Affectation":  "Hsanaa",
         "Service":  "RH",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-018 Bureau",
         "Affectation":  "Hsanaa",
         "Service":  "RH",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-019 Bureau",
         "Affectation":  "Hiba",
         "Service":  "Achat",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-020 Bureau",
         "Affectation":  "Aicha",
         "Service":  "Achat",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-021 Bureau",
         "Affectation":  "Ayoub",
         "Service":  "Achat",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-022 Bureau",
         "Affectation":  "Rachida",
         "Service":  "Comptabilité",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-023 Bureau",
         "Affectation":  "Amina",
         "Service":  "Comptabilité",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-024 Bureau",
-        "Affectation":  "",
+        "Affectation":  "Comptabilité",
         "Service":  "Comptabilité",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-025 Bureau",
         "Affectation":  "Ghizlane",
         "Service":  "A.O",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-026 Bureau",
         "Affectation":  "Asmaa",
         "Service":  "A.O",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-027 Bureau",
         "Affectation":  "Intissar",
         "Service":  "A.O",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-028 Bureau",
         "Affectation":  "Meriam",
         "Service":  "A.R",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-029 Bureau",
         "Affectation":  "Zineb",
         "Service":  "A.R",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-030 Bureau",
         "Affectation":  "Oumaima",
         "Service":  "Commercial",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-031 Bureau",
         "Affectation":  "Khadija",
         "Service":  "Commercial",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-032 Bureau",
         "Affectation":  "Sara",
         "Service":  "Commercial",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-033 Bureau",
         "Affectation":  "Souhaila",
         "Service":  "Commercial",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-034 Bureau",
         "Affectation":  "Hamid",
         "Service":  "Commercial",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-035 Bureau",
         "Affectation":  "Commercial",
         "Service":  "Commercial",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-036 Bureau",
         "Affectation":  "Laila",
         "Service":  "SAV",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-037 Bureau",
         "Affectation":  "Mostafa",
         "Service":  "Qualité",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-038 Bureau",
         "Affectation":  "Vide",
         "Service":  "Vide",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-039 Bureau",
         "Affectation":  "Vide",
         "Service":  "Vide",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-040 Bureau",
         "Affectation":  "Vide",
         "Service":  "Vide",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-041 Bureau",
         "Affectation":  "Vide",
         "Service":  "Vide",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-042 Bureau",
         "Affectation":  "Vide",
         "Service":  "Vide",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-043 Bureau",
         "Affectation":  "Salle de formation",
         "Service":  "RH",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-044 Bureau",
         "Affectation":  "Salle de formation",
         "Service":  "RH",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-045 Bureau",
         "Affectation":  "Salle de calibration",
         "Service":  "Technique",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-046 Bureau",
         "Affectation":  "Asmaa",
         "Service":  "Direction",
-        "Localisation":  "3ème Etage"
+        "Localisation":  "3ème Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-047 Bureau",
         "Affectation":  "Mr Fettahi",
         "Service":  "Direction",
-        "Localisation":  "Bureau DG"
+        "Localisation":  "Bureau DG",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-001 Chaise",
         "Affectation":  "Zineb",
         "Service":  "RH",
-        "Localisation":  "Accueille"
+        "Localisation":  "Accueille",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-002 Chaise",
-        "Affectation":  "",
+        "Affectation":  "Youssef",
         "Service":  "Stock",
-        "Localisation":  "bureau stock"
+        "Localisation":  "bureau stock",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-003 Chaise",
         "Affectation":  "Mohammed",
         "Service":  "Stock",
-        "Localisation":  "bureau stock"
+        "Localisation":  "bureau stock",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-004 Chaise",
         "Affectation":  "Hamid",
         "Service":  "Stock",
-        "Localisation":  "bureau stock"
+        "Localisation":  "bureau stock",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-005 Chaise",
         "Affectation":  "Stock",
         "Service":  "Stock",
-        "Localisation":  "Stock RDC"
+        "Localisation":  "Stock RDC",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-006 Chaise",
         "Affectation":  "Stock",
         "Service":  "Stock",
-        "Localisation":  "Stock RDC"
+        "Localisation":  "Stock RDC",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-007 Chaise",
         "Affectation":  "Stock",
         "Service":  "Stock",
-        "Localisation":  "Stock RDC"
+        "Localisation":  "Stock RDC",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-008 Chaise",
         "Affectation":  "Stock",
         "Service":  "Stock",
-        "Localisation":  "Stock 1er Etage"
+        "Localisation":  "Stock 1er Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-009 Chaise",
         "Affectation":  "Stock",
         "Service":  "Stock",
-        "Localisation":  "Stock 1er Etage"
+        "Localisation":  "Stock 1er Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-010 Chaise",
         "Affectation":  "Stock",
         "Service":  "Stock",
-        "Localisation":  "Stock 1er Etage"
+        "Localisation":  "Stock 1er Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-011 Chaise",
         "Affectation":  "Rabie",
         "Service":  "technique",
-        "Localisation":  "Local technique"
+        "Localisation":  "Local technique",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-012 Chaise",
         "Affectation":  "Idriss",
         "Service":  "technique",
-        "Localisation":  "Local technique"
+        "Localisation":  "Local technique",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-013 Chaise",
         "Affectation":  "Mohammed",
         "Service":  "technique",
-        "Localisation":  "Local technique"
+        "Localisation":  "Local technique",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-014 Chaise",
         "Affectation":  "Oussama",
         "Service":  "technique",
-        "Localisation":  "Local technique"
+        "Localisation":  "Local technique",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-015 Chaise",
         "Affectation":  "Ismail",
         "Service":  "technique",
-        "Localisation":  "Local technique"
+        "Localisation":  "Local technique",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-016 Chaise",
         "Affectation":  "Mostafa",
         "Service":  "technique",
-        "Localisation":  "Local technique"
+        "Localisation":  "Local technique",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-017 Chaise",
-        "Affectation":  "",
+        "Affectation":  "khalid",
         "Service":  "technique",
-        "Localisation":  "Local technique"
+        "Localisation":  "Local technique",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-018 Chaise",
         "Affectation":  "technique",
         "Service":  "technique",
-        "Localisation":  "Local technique"
+        "Localisation":  "Local technique",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-019 Chaise",
         "Affectation":  "technique",
         "Service":  "technique",
-        "Localisation":  "Local technique"
+        "Localisation":  "Local technique",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-020 Chaise",
         "Affectation":  "technique",
         "Service":  "technique",
-        "Localisation":  "Local technique"
+        "Localisation":  "Local technique",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-021 Chaise",
         "Affectation":  "technique",
         "Service":  "technique",
-        "Localisation":  "Local technique"
+        "Localisation":  "Local technique",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-022 Chaise",
         "Affectation":  "technique",
         "Service":  "technique",
-        "Localisation":  "Local technique"
+        "Localisation":  "Local technique",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-023 Chaise",
         "Affectation":  "technique",
         "Service":  "technique",
-        "Localisation":  "Local technique"
+        "Localisation":  "Local technique",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-024 Chaise",
         "Affectation":  "technique",
         "Service":  "technique",
-        "Localisation":  "Local technique"
+        "Localisation":  "Local technique",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-025 Chaise",
         "Affectation":  "Hasnaa",
         "Service":  "RH",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-026 Chaise",
         "Affectation":  "Hiba",
         "Service":  "Achat",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-027 Chaise",
         "Affectation":  "Aicha",
         "Service":  "Achat",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-028 Chaise",
         "Affectation":  "Ayoub",
         "Service":  "Achat",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-029 Chaise",
         "Affectation":  "Rachida",
         "Service":  "Comptabilité",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-030 Chaise",
         "Affectation":  "Amina",
         "Service":  "Comptabilité",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-031 Chaise",
         "Affectation":  "Ghizlane",
         "Service":  "A.O",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-032 Chaise",
         "Affectation":  "Asmaa",
         "Service":  "A.O",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-033 Chaise",
         "Affectation":  "Intissar",
         "Service":  "A.O",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-034 Chaise",
         "Affectation":  "Meriam",
         "Service":  "A.R",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-035 Chaise",
         "Affectation":  "Zineb",
         "Service":  "A?R",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-036 Chaise",
         "Affectation":  "Oumaima",
         "Service":  "Commercial",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-037 Chaise",
         "Affectation":  "Sara",
         "Service":  "Commercial",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-038 Chaise",
         "Affectation":  "Khadija",
         "Service":  "Commercial",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-039 Chaise",
         "Affectation":  "Souhaila",
         "Service":  "Commercial",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-040 Chaise",
         "Affectation":  "Hamid",
         "Service":  "Commercial",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-041 Chaise",
         "Affectation":  "Commercial",
         "Service":  "Commercial",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-042 Chaise",
         "Affectation":  "Laila",
         "Service":  "SAV",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-043 Chaise",
         "Affectation":  "Mostafa",
         "Service":  "Qualité",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-044 Chaise",
         "Affectation":  "Salle de formation",
         "Service":  "RH",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-045 Chaise",
         "Affectation":  "Salle de formation",
         "Service":  "RH",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-046 Chaise",
         "Affectation":  "Salle de formation",
         "Service":  "RH",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-047 Chaise",
         "Affectation":  "Salle de formation",
         "Service":  "RH",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-048 Chaise",
         "Affectation":  "Salle de formation",
         "Service":  "RH",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-049 Chaise",
         "Affectation":  "Salle de formation",
         "Service":  "RH",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-050 Chaise",
         "Affectation":  "Salle de formation",
         "Service":  "RH",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-051 Chaise",
         "Affectation":  "Salle de formation",
         "Service":  "RH",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-052 Chaise",
         "Affectation":  "Salle de formation",
         "Service":  "RH",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-053 Chaise",
         "Affectation":  "Salle de formation",
         "Service":  "RH",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-054 Chaise",
         "Affectation":  "Salle de formation",
         "Service":  "RH",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-055 Chaise",
         "Affectation":  "Salle de formation",
         "Service":  "RH",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-056 Chaise",
         "Affectation":  "Salle de formation",
         "Service":  "RH",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-057 Chaise",
         "Affectation":  "Salle de formation",
         "Service":  "RH",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-058 Chaise",
         "Affectation":  "Salle de formation",
         "Service":  "RH",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-059 Chaise",
         "Affectation":  "Salle de formation",
         "Service":  "RH",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-060 Chaise",
         "Affectation":  "Salle de formation",
         "Service":  "RH",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-061 Chaise",
         "Affectation":  "Salle de formation",
         "Service":  "RH",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-062 Chaise",
         "Affectation":  "Salle de calibration",
         "Service":  "technique",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-063 Chaise",
         "Affectation":  "Salle de calibration",
         "Service":  "technique",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-064 Chaise",
         "Affectation":  "Asmaa",
         "Service":  "Direction",
-        "Localisation":  "3ème Etage"
+        "Localisation":  "3ème Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-065 Chaise",
         "Affectation":  "Accueille direction",
         "Service":  "Direction",
-        "Localisation":  "Accueille 3ème Etage"
+        "Localisation":  "Accueille 3ème Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-066 Chaise",
         "Affectation":  "Accueille direction",
         "Service":  "Direction",
-        "Localisation":  "Accueille 3ème Etage"
+        "Localisation":  "Accueille 3ème Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-067 Chaise",
         "Affectation":  "Accueille direction",
         "Service":  "Direction",
-        "Localisation":  "Accueille 3ème Etage"
+        "Localisation":  "Accueille 3ème Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-068 Chaise",
         "Affectation":  "Accueille direction",
         "Service":  "Direction",
-        "Localisation":  "Accueille 3ème Etage"
+        "Localisation":  "Accueille 3ème Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-069 Chaise",
         "Affectation":  "Accueille direction",
         "Service":  "Direction",
-        "Localisation":  "Accueille 3ème Etage"
+        "Localisation":  "Accueille 3ème Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-070 Chaise",
         "Affectation":  "Accueille direction",
         "Service":  "Direction",
-        "Localisation":  "Accueille 3ème Etage"
+        "Localisation":  "Accueille 3ème Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-071 Chaise",
         "Affectation":  "Accueille direction",
         "Service":  "Direction",
-        "Localisation":  "Accueille 3ème Etage"
+        "Localisation":  "Accueille 3ème Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-072 Chaise",
         "Affectation":  "Accueille direction",
         "Service":  "Direction",
-        "Localisation":  "Accueille 3ème Etage"
+        "Localisation":  "Accueille 3ème Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-073 Chaise",
         "Affectation":  "Accueille direction",
         "Service":  "Direction",
-        "Localisation":  "Accueille 3ème Etage"
+        "Localisation":  "Accueille 3ème Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-074 Chaise",
         "Affectation":  "Accueille direction",
         "Service":  "Direction",
-        "Localisation":  "Accueille 3ème Etage"
+        "Localisation":  "Accueille 3ème Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-075 Chaise",
         "Affectation":  "Mr Fettahi",
         "Service":  "Direction",
-        "Localisation":  "Bureau DG"
+        "Localisation":  "Bureau DG",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-076 Chaise",
         "Affectation":  "Accueille direction",
         "Service":  "Direction",
-        "Localisation":  "Bureau DG"
+        "Localisation":  "Bureau DG",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-077 Chaise",
         "Affectation":  "Accueille direction",
         "Service":  "Direction",
-        "Localisation":  "Bureau DG"
+        "Localisation":  "Bureau DG",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-078 Chaise",
         "Affectation":  "Accueille direction",
         "Service":  "Direction",
-        "Localisation":  "Bureau DG"
+        "Localisation":  "Bureau DG",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-079 Chaise",
         "Affectation":  "Accueille direction",
         "Service":  "Direction",
-        "Localisation":  "Bureau DG"
+        "Localisation":  "Bureau DG",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-080 Chaise",
         "Affectation":  "Salle de réunion",
         "Service":  "Direction",
-        "Localisation":  "3ème Etage"
+        "Localisation":  "3ème Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-081 Chaise",
         "Affectation":  "Salle de réunion",
         "Service":  "Direction",
-        "Localisation":  "3ème Etage"
+        "Localisation":  "3ème Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-082 Chaise",
         "Affectation":  "Salle de réunion",
         "Service":  "Direction",
-        "Localisation":  "3ème Etage"
+        "Localisation":  "3ème Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-083 Chaise",
         "Affectation":  "Salle de réunion",
         "Service":  "Direction",
-        "Localisation":  "3ème Etage"
+        "Localisation":  "3ème Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-084 Chaise",
         "Affectation":  "Salle de réunion",
         "Service":  "Direction",
-        "Localisation":  "3ème Etage"
+        "Localisation":  "3ème Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-085 Chaise",
         "Affectation":  "Salle de réunion",
         "Service":  "Direction",
-        "Localisation":  "3ème Etage"
+        "Localisation":  "3ème Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-086 Chaise",
         "Affectation":  "Salle de réunion",
         "Service":  "Direction",
-        "Localisation":  "3ème Etage"
+        "Localisation":  "3ème Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-087 Chaise",
         "Affectation":  "Salle de réunion",
         "Service":  "Direction",
-        "Localisation":  "3ème Etage"
+        "Localisation":  "3ème Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-088 Chaise",
         "Affectation":  "Salle de réunion",
         "Service":  "Direction",
-        "Localisation":  "3ème Etage"
+        "Localisation":  "3ème Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-089 Chaise",
         "Affectation":  "Salle de réunion",
         "Service":  "Direction",
-        "Localisation":  "3ème Etage"
+        "Localisation":  "3ème Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-090 Chaise",
         "Affectation":  "Salle de réunion",
         "Service":  "Direction",
-        "Localisation":  "3ème Etage"
+        "Localisation":  "3ème Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-091 Chaise",
         "Affectation":  "Salle de réunion",
         "Service":  "Direction",
-        "Localisation":  "3ème Etage"
+        "Localisation":  "3ème Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-092 Chaise",
         "Affectation":  "Salle de réunion",
         "Service":  "Direction",
-        "Localisation":  "3ème Etage"
+        "Localisation":  "3ème Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-093 Chaise",
         "Affectation":  "Salle de réunion",
         "Service":  "Direction",
-        "Localisation":  "3ème Etage"
+        "Localisation":  "3ème Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-094 Chaise",
         "Affectation":  "Salle de réunion",
         "Service":  "Direction",
-        "Localisation":  "3ème Etage"
+        "Localisation":  "3ème Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-095 Chaise",
         "Affectation":  "Salle de réunion",
         "Service":  "Direction",
-        "Localisation":  "3ème Etage"
+        "Localisation":  "3ème Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-096 Chaise",
         "Affectation":  "Salle de réunion",
         "Service":  "Direction",
-        "Localisation":  "3ème Etage"
+        "Localisation":  "3ème Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-097 Chaise",
         "Affectation":  "Espace privé direction",
         "Service":  "Direction",
-        "Localisation":  "3ème Etage"
+        "Localisation":  "3ème Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-098 Chaise",
         "Affectation":  "Espace privé direction",
         "Service":  "Direction",
-        "Localisation":  "3ème Etage"
+        "Localisation":  "3ème Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-099 Chaise",
         "Affectation":  "Espace privé direction",
         "Service":  "Direction",
-        "Localisation":  "3ème Etage"
+        "Localisation":  "3ème Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-100 Chaise",
         "Affectation":  "Espace privé direction",
         "Service":  "Direction",
-        "Localisation":  "3ème Etage"
+        "Localisation":  "3ème Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-001 Caisson",
         "Affectation":  "Zineb",
         "Service":  "RH",
-        "Localisation":  ""
+        "Localisation":  "Accueille",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-002 Caisson",
-        "Affectation":  "",
+        "Affectation":  "Youssef",
         "Service":  "Stock",
-        "Localisation":  "bureau stock"
+        "Localisation":  "bureau stock",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-003 Caisson",
-        "Affectation":  "",
+        "Affectation":  "Youssef",
         "Service":  "Stock",
-        "Localisation":  "bureau stock"
+        "Localisation":  "bureau stock",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-004 Caisson",
-        "Affectation":  "",
+        "Affectation":  "Youssef",
         "Service":  "Stock",
-        "Localisation":  "bureau stock"
+        "Localisation":  "bureau stock",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-005 Caisson",
         "Affectation":  "Mohammed",
         "Service":  "Stock",
-        "Localisation":  "bureau stock"
+        "Localisation":  "bureau stock",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-006 Caisson",
         "Affectation":  "Rabie",
         "Service":  "technique",
-        "Localisation":  "Local technique"
+        "Localisation":  "Local technique",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-007 Caisson",
         "Affectation":  "Rabie",
         "Service":  "technique",
-        "Localisation":  "Local technique"
+        "Localisation":  "Local technique",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-008 Caisson",
         "Affectation":  "technique",
         "Service":  "technique",
-        "Localisation":  "Local technique"
+        "Localisation":  "Local technique",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-009 Caisson",
         "Affectation":  "technique",
         "Service":  "technique",
-        "Localisation":  "Local technique"
+        "Localisation":  "Local technique",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-010 Caisson",
         "Affectation":  "technique",
         "Service":  "technique",
-        "Localisation":  "Local technique"
+        "Localisation":  "Local technique",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-011 Caisson",
         "Affectation":  "technique",
         "Service":  "technique",
-        "Localisation":  "Local technique"
+        "Localisation":  "Local technique",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-012 Caisson",
         "Affectation":  "Idriss",
         "Service":  "technique",
-        "Localisation":  "Local technique"
+        "Localisation":  "Local technique",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-013 Caisson",
         "Affectation":  "Mohammed",
         "Service":  "technique",
-        "Localisation":  "Local technique"
+        "Localisation":  "Local technique",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-014 Caisson",
         "Affectation":  "Oussama",
         "Service":  "technique",
-        "Localisation":  "Local technique"
+        "Localisation":  "Local technique",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-015 Caisson",
         "Affectation":  "Ismail",
         "Service":  "technique",
-        "Localisation":  "Local technique"
+        "Localisation":  "Local technique",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-016 Caisson",
         "Affectation":  "Mostafa",
         "Service":  "technique",
-        "Localisation":  "Local technique"
+        "Localisation":  "Local technique",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-017 Caisson",
-        "Affectation":  "",
+        "Affectation":  "khalid",
         "Service":  "technique",
-        "Localisation":  "Local technique"
+        "Localisation":  "Local technique",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-018 Caisson",
         "Affectation":  "Hasnaa",
         "Service":  "RH",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-019 Caisson",
         "Affectation":  "Hasnaa",
         "Service":  "RH",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-020 Caisson",
         "Affectation":  "Hasnaa",
         "Service":  "RH",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-021 Caisson",
         "Affectation":  "Hiba",
         "Service":  "Achat",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-022 Caisson",
         "Affectation":  "Aicha",
         "Service":  "Achat",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-023 Caisson",
         "Affectation":  "Ayoub",
         "Service":  "Achat",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-024 Caisson",
         "Affectation":  "Rachida",
         "Service":  "Comptabilité",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-025 Caisson",
         "Affectation":  "Amina",
         "Service":  "Comptabilité",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-026 Caisson",
-        "Affectation":  "",
+        "Affectation":  "Comptabilité",
         "Service":  "Comptabilité",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-027 Caisson",
         "Affectation":  "Ghizlane",
         "Service":  "A.O",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-028 Caisson",
         "Affectation":  "Intissar",
         "Service":  "A.O",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-029 Caisson",
         "Affectation":  "Asmaa",
         "Service":  "A.O",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-030 Caisson",
         "Affectation":  "Meriam",
         "Service":  "A.R",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-031 Caisson",
         "Affectation":  "Zineb",
         "Service":  "A.R",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-032 Caisson",
         "Affectation":  "Sara",
         "Service":  "Commercial",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-033 Caisson",
         "Affectation":  "Oumaima",
         "Service":  "Commercial",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-034 Caisson",
         "Affectation":  "Khadija",
         "Service":  "Commercial",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-035 Caisson",
         "Affectation":  "Souhaila",
         "Service":  "Commercial",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-036 Caisson",
         "Affectation":  "Hamid",
         "Service":  "Commercial",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-037 Caisson",
         "Affectation":  "Commercial",
         "Service":  "Commercial",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-038 Caisson",
         "Affectation":  "Laila",
         "Service":  "SAV",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-039 Caisson",
         "Affectation":  "Mostafa",
         "Service":  "Qualité",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-040 Caisson",
         "Affectation":  "Vide",
         "Service":  "Vide",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-041 Caisson",
         "Affectation":  "Vide",
         "Service":  "Vide",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-042 Caisson",
         "Affectation":  "Vide",
         "Service":  "Vide",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-043 Caisson",
         "Affectation":  "Vide",
         "Service":  "Vide",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-044 Caisson",
         "Affectation":  "Vide",
         "Service":  "Vide",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-045 Caisson",
         "Affectation":  "Asmaa",
         "Service":  "Direction",
-        "Localisation":  "3ème Etage"
+        "Localisation":  "3ème Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-046 Caisson",
         "Affectation":  "Mr Fettahi",
         "Service":  "Direction",
-        "Localisation":  ""
+        "Localisation":  "Espace privé",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-001 Placard bureau",
-        "Affectation":  "",
+        "Affectation":  "Youssef",
         "Service":  "Stock",
-        "Localisation":  "bureau stock"
+        "Localisation":  "bureau stock",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-002 Placard bureau",
-        "Affectation":  "",
+        "Affectation":  "Youssef",
         "Service":  "Stock",
-        "Localisation":  "bureau stock"
+        "Localisation":  "bureau stock",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-003 Placard bureau",
-        "Affectation":  "",
+        "Affectation":  "Youssef",
         "Service":  "Stock",
-        "Localisation":  ""
+        "Localisation":  "Stock RDC",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-004 Placard bureau",
         "Affectation":  "technique",
         "Service":  "technique",
-        "Localisation":  "Local technique"
+        "Localisation":  "Local technique",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-005 Placard bureau",
         "Affectation":  "technique",
         "Service":  "technique",
-        "Localisation":  "Local technique"
+        "Localisation":  "Local technique",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-006 Placard bureau",
         "Affectation":  "Achat",
         "Service":  "Achat",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-007 Placard bureau",
         "Affectation":  "Achat",
         "Service":  "Achat",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-008 Placard bureau",
         "Affectation":  "Achat",
         "Service":  "Achat",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-009 Placard bureau",
         "Affectation":  "A.O",
         "Service":  "A.O",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-010 Placard bureau",
         "Affectation":  "Zineb",
         "Service":  "A.R",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-011 Placard bureau",
         "Affectation":  "Meriam",
         "Service":  "A.R",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-012 Placard bureau",
         "Affectation":  "Sara",
         "Service":  "Commercial",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-013 Placard bureau",
         "Affectation":  "Oumaima",
         "Service":  "Commercial",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-014 Placard bureau",
         "Affectation":  "Khadija",
         "Service":  "Commercial",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-015 Placard bureau",
         "Affectation":  "Souhaila",
         "Service":  "Commercial",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-016 Placard bureau",
         "Affectation":  "Hamid",
         "Service":  "Commercial",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-017 Placard bureau",
         "Affectation":  "Laila",
         "Service":  "SAV",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-018 Placard bureau",
         "Affectation":  "Mostafa",
         "Service":  "Qualité",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-019 Placard bureau",
         "Affectation":  "Mostafa",
         "Service":  "Moyens généraux",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-020 Placard bureau",
         "Affectation":  "Mostafa",
         "Service":  "Moyens généraux",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-021 Placard bureau",
         "Affectation":  "Mostafa",
         "Service":  "Moyens généraux",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-022 Placard bureau",
         "Affectation":  "Vide",
         "Service":  "Vide",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-023 Placard bureau",
         "Affectation":  "Vide",
         "Service":  "Vide",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-024 Placard bureau",
         "Affectation":  "Vide",
         "Service":  "Vide",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-025 Placard bureau",
         "Affectation":  "Vide",
         "Service":  "Vide",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-026 Placard bureau",
         "Affectation":  "Vide",
         "Service":  "Vide",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-001 Placard archive",
         "Affectation":  "Stock",
         "Service":  "Stock",
-        "Localisation":  "Stock 1er Etage"
+        "Localisation":  "Stock 1er Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-002 Placard archive",
         "Affectation":  "Stock",
         "Service":  "Stock",
-        "Localisation":  "Stock 1er Etage"
+        "Localisation":  "Stock 1er Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-003 Placard archive",
         "Affectation":  "Stock",
         "Service":  "Stock",
-        "Localisation":  "Stock 1er Etage"
+        "Localisation":  "Stock 1er Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-004 Placard archive",
         "Affectation":  "Stock",
         "Service":  "Stock",
-        "Localisation":  "Stock 1er Etage"
+        "Localisation":  "Stock 1er Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-005 Placard archive",
         "Affectation":  "technique",
         "Service":  "technique",
-        "Localisation":  "Local technique"
+        "Localisation":  "Local technique",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-006 Placard archive",
         "Affectation":  "technique",
         "Service":  "technique",
-        "Localisation":  "Local technique"
+        "Localisation":  "Local technique",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-007 Placard archive",
         "Affectation":  "technique",
         "Service":  "technique",
-        "Localisation":  "Local technique"
+        "Localisation":  "Local technique",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-008 Placard archive",
         "Affectation":  "technique",
         "Service":  "technique",
-        "Localisation":  "Local technique"
+        "Localisation":  "Local technique",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-009 Placard archive",
         "Affectation":  "Hasnaa",
         "Service":  "RH",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-010 Placard archive",
         "Affectation":  "Achat",
         "Service":  "Achat",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-011 Placard archive",
-        "Affectation":  "",
-        "Service":  "",
-        "Localisation":  "2eme Etage"
+        "Affectation":  "Comptabilité",
+        "Service":  "Comptabilité",
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-012 Placard archive",
-        "Affectation":  "",
-        "Service":  "",
-        "Localisation":  "2eme Etage"
+        "Affectation":  "Comptabilité",
+        "Service":  "Comptabilité",
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-013 Placard archive",
-        "Affectation":  "",
-        "Service":  "",
-        "Localisation":  "2eme Etage"
+        "Affectation":  "Comptabilité",
+        "Service":  "Comptabilité",
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-014 Placard archive",
         "Affectation":  "A.O",
         "Service":  "A.O",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-015 Placard archive",
         "Affectation":  "A.O",
         "Service":  "A.O",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-016 Placard archive",
         "Affectation":  "Commercial",
         "Service":  "Commercial",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-017 Placard archive",
         "Affectation":  "A.R",
         "Service":  "A.R",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-001 Tableau blanc",
         "Affectation":  "Affichage SMQ",
         "Service":  "SMQ",
-        "Localisation":  ""
+        "Localisation":  "Couloir d\u0027entré",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-002 Tableau blanc",
         "Affectation":  "technique",
         "Service":  "technique",
-        "Localisation":  "Local technique"
+        "Localisation":  "Local technique",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-003 Tableau blanc",
         "Affectation":  "Salle de formation",
         "Service":  "RH",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-001 Table de formation",
         "Affectation":  "Salle de formation",
         "Service":  "RH",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-002 Table de formation",
         "Affectation":  "Salle de formation",
         "Service":  "RH",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-003 Table de formation",
         "Affectation":  "Salle de formation",
         "Service":  "RH",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-004 Table de formation",
         "Affectation":  "Salle de formation",
         "Service":  "RH",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-005 Table de formation",
         "Affectation":  "Salle de formation",
         "Service":  "RH",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-006 Table de formation",
         "Affectation":  "Salle de formation",
         "Service":  "RH",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-007 Table de formation",
         "Affectation":  "Salle de formation",
         "Service":  "RH",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-008 Table de formation",
         "Affectation":  "Salle de formation",
         "Service":  "RH",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-009 Table de formation",
         "Affectation":  "Salle de formation",
         "Service":  "RH",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-010 Table de formation",
         "Affectation":  "Salle de formation",
         "Service":  "RH",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-011 Table de formation",
         "Affectation":  "Salle de formation",
         "Service":  "RH",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-012 Table de formation",
         "Affectation":  "Salle de formation",
         "Service":  "RH",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-001 Table de maintenance",
         "Affectation":  "technique",
         "Service":  "technique",
-        "Localisation":  "Local technique"
+        "Localisation":  "Local technique",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-001 Table cantine",
-        "Affectation":  "",
+        "Affectation":  "Réfectoire",
         "Service":  "Moyens généraux",
-        "Localisation":  ""
+        "Localisation":  "Réfectoire",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-002 Table cantine",
-        "Affectation":  "",
+        "Affectation":  "Réfectoire",
         "Service":  "Moyens généraux",
-        "Localisation":  ""
+        "Localisation":  "Réfectoire",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-003 Table cantine",
-        "Affectation":  "",
+        "Affectation":  "Réfectoire",
         "Service":  "Moyens généraux",
-        "Localisation":  ""
+        "Localisation":  "Réfectoire",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-004 Table cantine",
-        "Affectation":  "",
+        "Affectation":  "Réfectoire",
         "Service":  "Moyens généraux",
-        "Localisation":  ""
+        "Localisation":  "Réfectoire",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-001 Chaise plastique",
-        "Affectation":  "",
+        "Affectation":  "Réfectoire",
         "Service":  "Moyens généraux",
-        "Localisation":  ""
+        "Localisation":  "Réfectoire",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-002 Chaise plastique",
-        "Affectation":  "",
+        "Affectation":  "Réfectoire",
         "Service":  "Moyens généraux",
-        "Localisation":  ""
+        "Localisation":  "Réfectoire",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-003 Chaise plastique",
-        "Affectation":  "",
+        "Affectation":  "Réfectoire",
         "Service":  "Moyens généraux",
-        "Localisation":  ""
+        "Localisation":  "Réfectoire",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-004 Chaise plastique",
-        "Affectation":  "",
+        "Affectation":  "Réfectoire",
         "Service":  "Moyens généraux",
-        "Localisation":  ""
+        "Localisation":  "Réfectoire",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-005 Chaise plastique",
-        "Affectation":  "",
+        "Affectation":  "Réfectoire",
         "Service":  "Moyens généraux",
-        "Localisation":  ""
+        "Localisation":  "Réfectoire",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-006 Chaise plastique",
-        "Affectation":  "",
+        "Affectation":  "Réfectoire",
         "Service":  "Moyens généraux",
-        "Localisation":  ""
+        "Localisation":  "Réfectoire",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-007 Chaise plastique",
-        "Affectation":  "",
+        "Affectation":  "Réfectoire",
         "Service":  "Moyens généraux",
-        "Localisation":  ""
+        "Localisation":  "Réfectoire",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-008 Chaise plastique",
-        "Affectation":  "",
+        "Affectation":  "Réfectoire",
         "Service":  "Moyens généraux",
-        "Localisation":  ""
+        "Localisation":  "Réfectoire",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-009 Chaise plastique",
-        "Affectation":  "",
+        "Affectation":  "Réfectoire",
         "Service":  "Moyens généraux",
-        "Localisation":  ""
+        "Localisation":  "Réfectoire",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-010 Chaise plastique",
-        "Affectation":  "",
+        "Affectation":  "Réfectoire",
         "Service":  "Moyens généraux",
-        "Localisation":  ""
+        "Localisation":  "Réfectoire",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-011 Chaise plastique",
-        "Affectation":  "",
+        "Affectation":  "Réfectoire",
         "Service":  "Moyens généraux",
-        "Localisation":  ""
+        "Localisation":  "Réfectoire",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-012 Chaise plastique",
-        "Affectation":  "",
+        "Affectation":  "Réfectoire",
         "Service":  "Moyens généraux",
-        "Localisation":  ""
+        "Localisation":  "Réfectoire",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-013 Chaise plastique",
-        "Affectation":  "",
+        "Affectation":  "Réfectoire",
         "Service":  "Moyens généraux",
-        "Localisation":  ""
+        "Localisation":  "Réfectoire",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-014 Chaise plastique",
-        "Affectation":  "",
+        "Affectation":  "Réfectoire",
         "Service":  "Moyens généraux",
-        "Localisation":  ""
+        "Localisation":  "Réfectoire",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-015 Chaise plastique",
-        "Affectation":  "",
+        "Affectation":  "Réfectoire",
         "Service":  "Moyens généraux",
-        "Localisation":  ""
+        "Localisation":  "Réfectoire",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-016 Chaise plastique",
-        "Affectation":  "",
+        "Affectation":  "Réfectoire",
         "Service":  "Moyens généraux",
-        "Localisation":  ""
+        "Localisation":  "Réfectoire",
+        "Marque":  ""
+    },
+    {
+        "Inventaire":  "BSK-MOB-001 table ronde",
+        "Affectation":  "Administration",
+        "Service":  "Administration",
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
+    },
+    {
+        "Inventaire":  "BSK-MOB-002 table ronde",
+        "Affectation":  "direction",
+        "Service":  "direction",
+        "Localisation":  "3ème Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-001 table verre et bois",
         "Affectation":  "direction",
         "Service":  "direction",
-        "Localisation":  "3ème Etage"
+        "Localisation":  "3ème Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-002 table verre et bois",
         "Affectation":  "direction",
         "Service":  "direction",
-        "Localisation":  "bureau Mr fettahi"
+        "Localisation":  "bureau Mr fettahi",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-001 table bois",
         "Affectation":  "direction",
         "Service":  "direction",
-        "Localisation":  "bureau Mr fettahi"
+        "Localisation":  "bureau Mr fettahi",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-002 table bois",
         "Affectation":  "direction",
         "Service":  "direction",
-        "Localisation":  ""
+        "Localisation":  "Espace privé",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-001 table salle de réunion",
         "Affectation":  "direction",
         "Service":  "direction",
-        "Localisation":  "Salle de réunion"
+        "Localisation":  "Salle de réunion",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-001 retour de bureau",
         "Affectation":  "direction",
         "Service":  "direction",
-        "Localisation":  "bureau Mr fettahi"
+        "Localisation":  "bureau Mr fettahi",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-001 fauteuil",
         "Affectation":  "direction",
         "Service":  "direction",
-        "Localisation":  "bureau Mr fettahi"
+        "Localisation":  "bureau Mr fettahi",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-002 fauteuil",
         "Affectation":  "direction",
         "Service":  "direction",
-        "Localisation":  ""
+        "Localisation":  "Espace privé",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-001 Escabeau petite marche",
         "Affectation":  "Stock",
         "Service":  "Stock",
-        "Localisation":  "Stock RDC"
+        "Localisation":  "Stock RDC",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-002 Escabeau petite marche",
         "Affectation":  "Stock",
         "Service":  "Stock",
-        "Localisation":  ""
+        "Localisation":  "Stock  mezzanine",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-003 Escabeau petite marche",
         "Affectation":  "Stock",
         "Service":  "Stock",
-        "Localisation":  "Stock 1er Etage"
+        "Localisation":  "Stock 1er Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-001 Escabeau double bois",
         "Affectation":  "Stock",
         "Service":  "Stock",
-        "Localisation":  "stock mezzanine"
+        "Localisation":  "stock mezzanine",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-001 Escabeau grande hauteur",
         "Affectation":  "Stock",
         "Service":  "Stock",
-        "Localisation":  "Stock RDC"
+        "Localisation":  "Stock RDC",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-002 Escabeau grande hauteur",
         "Affectation":  "Stock",
         "Service":  "Stock",
-        "Localisation":  "stock mezzanine"
+        "Localisation":  "stock mezzanine",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-MOB-003 Escabeau grande hauteur",
         "Affectation":  "Stock",
         "Service":  "Stock",
-        "Localisation":  "Stock 1er Etage"
+        "Localisation":  "Stock 1er Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-TELF-001 Téléphone fixe (standard)",
-        "Affectation":  "",
+        "Affectation":  "zineb",
         "Service":  "RH",
-        "Localisation":  "Accueille"
+        "Localisation":  "Accueille",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-TELF-002 Téléphone fixe (standard)",
-        "Affectation":  "",
+        "Affectation":  "Mr fettahi",
         "Service":  "Direction",
-        "Localisation":  "Bureau Mr fettahi"
+        "Localisation":  "Bureau Mr fettahi",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-TELF-003 Téléphone fixe",
         "Affectation":  "Youssef",
         "Service":  "stock",
-        "Localisation":  ""
+        "Localisation":  "Bureau stock",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-TELF-004 Téléphone fixe",
         "Affectation":  "Rabie",
         "Service":  "Technique",
-        "Localisation":  "Local technique"
+        "Localisation":  "Local technique",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-TELF-005 Téléphone fixe",
         "Affectation":  "Hasnaa",
         "Service":  "RH",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-TELF-006 Téléphone fixe",
         "Affectation":  "Ayoub",
         "Service":  "achat",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-TELF-007 Téléphone fixe",
         "Affectation":  "Aicha",
         "Service":  "achat",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-TELF-008 Téléphone fixe",
         "Affectation":  "Hiba",
         "Service":  "achat",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-TELF-009 Téléphone fixe",
         "Affectation":  "Rachida",
         "Service":  "comptabilité",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-TELF-010 Téléphone fixe",
         "Affectation":  "Amina",
         "Service":  "comptabilité",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-TELF-011 Téléphone fixe",
         "Affectation":  "Ghizlane",
         "Service":  "A.O",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-TELF-012 Téléphone fixe",
         "Affectation":  "Asmaa",
         "Service":  "A.O",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-TELF-013 Téléphone fixe",
         "Affectation":  "Intissar",
         "Service":  "A.O",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-TELF-014 Téléphone fixe",
         "Affectation":  "Zineb",
         "Service":  "A.R",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-TELF-015 Téléphone fixe",
         "Affectation":  "Meriam",
         "Service":  "A.R",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-TELF-016 Téléphone fixe",
         "Affectation":  "Oumaima",
         "Service":  "Commercial",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-TELF-017 Téléphone fixe",
         "Affectation":  "Souhaila",
         "Service":  "Commercial",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-TELF-018 Téléphone fixe",
         "Affectation":  "Sara",
         "Service":  "Commercial",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-TELF-019 Téléphone fixe",
         "Affectation":  "Khadija",
         "Service":  "Commercial",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-TELF-020 Téléphone fixe",
         "Affectation":  "Hamid",
         "Service":  "Commercial",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-TELF-021 Téléphone fixe",
         "Affectation":  "Laila",
         "Service":  "SAV",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-TELF-022 Téléphone fixe",
         "Affectation":  "Mostafa",
         "Service":  "Qualité",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-TELF-023 Téléphone fixe",
         "Affectation":  "Vide",
         "Service":  "Vide",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-TELF-024 Téléphone fixe",
         "Affectation":  "Poste garde",
         "Service":  "Sécurité",
-        "Localisation":  "Poste garde"
+        "Localisation":  "Poste garde",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-TELF-025 Téléphone fixe",
         "Affectation":  "Asmaa accouasi",
         "Service":  "Direction",
-        "Localisation":  "3ème Etage"
+        "Localisation":  "3ème Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-TELF-026 Téléphone fixe",
         "Affectation":  "Salle de réunion",
         "Service":  "Direction",
-        "Localisation":  "3ème Etage"
+        "Localisation":  "3ème Etage",
+        "Marque":  ""
+    },
+    {
+        "Inventaire":  "BSK-TELM-001 Téléphone mobile",
+        "Affectation":  "Mohammed",
+        "Service":  "Stock",
+        "Localisation":  "Stock",
+        "Marque":  "A04"
     },
     {
         "Inventaire":  "BSK-TELM-002 Téléphone mobile",
         "Affectation":  "Anas",
         "Service":  "Stock",
-        "Localisation":  "Stock"
+        "Localisation":  "Stock",
+        "Marque":  "A04"
     },
     {
         "Inventaire":  "BSK-TELM-003 Téléphone mobile",
         "Affectation":  "Yassine",
         "Service":  "Stock",
-        "Localisation":  "Stock"
+        "Localisation":  "Stock",
+        "Marque":  "A17"
     },
     {
         "Inventaire":  "BSK-TELM-004 Téléphone mobile",
         "Affectation":  "Achraf",
         "Service":  "Stock",
-        "Localisation":  "Stock"
+        "Localisation":  "Stock",
+        "Marque":  "A17"
     },
     {
         "Inventaire":  "BSK-TELM-005 Téléphone mobile",
         "Affectation":  "Zakaria",
         "Service":  "Stock",
-        "Localisation":  "Stock"
+        "Localisation":  "Stock",
+        "Marque":  "A17"
     },
     {
         "Inventaire":  "BSK-TELM-006 Téléphone mobile",
         "Affectation":  "Marouane",
         "Service":  "Stock",
-        "Localisation":  "Stock"
+        "Localisation":  "Stock",
+        "Marque":  "A04"
     },
     {
         "Inventaire":  "BSK-TELM-007 Téléphone mobile",
         "Affectation":  "Rabie",
         "Service":  "technique",
-        "Localisation":  "technique"
+        "Localisation":  "technique",
+        "Marque":  "A04"
     },
     {
         "Inventaire":  "BSK-TELM-008 Téléphone mobile",
-        "Affectation":  "",
+        "Affectation":  "Ismail",
         "Service":  "technique",
-        "Localisation":  "technique"
+        "Localisation":  "technique",
+        "Marque":  "A17"
     },
     {
         "Inventaire":  "BSK-TELM-009 Téléphone mobile",
         "Affectation":  "Kamil",
         "Service":  "technique",
-        "Localisation":  "technique"
+        "Localisation":  "technique",
+        "Marque":  "A17"
     },
     {
         "Inventaire":  "BSK-TELM-010 Téléphone mobile",
         "Affectation":  "Oussama",
         "Service":  "technique",
-        "Localisation":  "technique"
+        "Localisation":  "technique",
+        "Marque":  "A06"
     },
     {
         "Inventaire":  "BSK-TELM-011 Téléphone mobile",
         "Affectation":  "Technique",
         "Service":  "technique",
-        "Localisation":  "technique"
+        "Localisation":  "technique",
+        "Marque":  "A06"
     },
     {
         "Inventaire":  "BSK-TELM-012 Téléphone mobile",
         "Affectation":  "Mardioui",
         "Service":  "Qualité",
-        "Localisation":  "Qualité"
+        "Localisation":  "Qualité",
+        "Marque":  "A06"
     },
     {
         "Inventaire":  "BSK-TELM-013 Téléphone mobile",
         "Affectation":  "Ayoub",
         "Service":  "Achat",
-        "Localisation":  "Achat"
+        "Localisation":  "Achat",
+        "Marque":  "A17"
     },
     {
         "Inventaire":  "BSK-TELM-014 Téléphone mobile",
         "Affectation":  "Rachida",
         "Service":  "comptabilité",
-        "Localisation":  "comptabilité"
+        "Localisation":  "comptabilité",
+        "Marque":  "A07"
     },
     {
         "Inventaire":  "BSK-TELM-015 Téléphone mobile",
         "Affectation":  "ghizlane",
         "Service":  "A.O",
-        "Localisation":  "A.O"
+        "Localisation":  "A.O",
+        "Marque":  "A04"
     },
     {
         "Inventaire":  "BSK-TELM-016 Téléphone mobile",
         "Affectation":  "Meriam",
         "Service":  "A.R",
-        "Localisation":  "A.R"
+        "Localisation":  "A.R",
+        "Marque":  "A06"
     },
     {
         "Inventaire":  "BSK-TELM-017 Téléphone mobile",
         "Affectation":  "Khadija",
         "Service":  "Commercial",
-        "Localisation":  "Commercial"
+        "Localisation":  "Commercial",
+        "Marque":  "A06"
     },
     {
         "Inventaire":  "BSK-TELM-018 Téléphone mobile",
         "Affectation":  "Sara",
         "Service":  "Commercial",
-        "Localisation":  "Commercial"
+        "Localisation":  "Commercial",
+        "Marque":  "A06"
     },
     {
         "Inventaire":  "BSK-TELM-019 Téléphone mobile",
         "Affectation":  "Hamid",
         "Service":  "Commercial",
-        "Localisation":  "Commercial"
+        "Localisation":  "Commercial",
+        "Marque":  "A17"
     },
     {
         "Inventaire":  "BSK-TELM-020 Téléphone mobile",
         "Affectation":  "Laila",
         "Service":  "SAV",
-        "Localisation":  "SAV"
+        "Localisation":  "SAV",
+        "Marque":  "A03"
     },
     {
         "Inventaire":  "BSK-TELM-021 Téléphone mobile",
         "Affectation":  "Asmaa",
         "Service":  "direction",
-        "Localisation":  "direction"
+        "Localisation":  "direction",
+        "Marque":  "A17"
     },
     {
         "Inventaire":  "BSK-TELM-022 Téléphone mobile",
-        "Affectation":  "",
-        "Service":  "",
-        "Localisation":  ""
+        "Affectation":  "Hamza",
+        "Service":  "coursier",
+        "Localisation":  "coursier",
+        "Marque":  "A17"
     },
     {
         "Inventaire":  "BSK-TELM-023 Téléphone mobile",
         "Affectation":  "Mr fettahi",
         "Service":  "direction",
-        "Localisation":  "direction"
+        "Localisation":  "direction",
+        "Marque":  "A35"
     },
     {
         "Inventaire":  "BSK-TELM-024 Téléphone mobile",
         "Affectation":  "Mr fettahi",
         "Service":  "direction",
-        "Localisation":  "direction"
+        "Localisation":  "direction",
+        "Marque":  "S24"
     },
     {
         "Inventaire":  "BSK-INF-001 PC Portable",
-        "Affectation":  "",
+        "Affectation":  "Hamid",
         "Service":  "stock",
-        "Localisation":  "bureau stock"
+        "Localisation":  "bureau stock",
+        "Marque":  "DELL"
     },
     {
         "Inventaire":  "BSK-INF-002 PC Portable",
         "Affectation":  "Rabie",
-        "Service":  "",
-        "Localisation":  "local technique"
+        "Service":  "technique",
+        "Localisation":  "local technique",
+        "Marque":  "HP"
     },
     {
         "Inventaire":  "BSK-INF-003 PC Portable",
         "Affectation":  "Kamil",
-        "Service":  "",
-        "Localisation":  "local technique"
+        "Service":  "technique",
+        "Localisation":  "local technique",
+        "Marque":  "DELL"
     },
     {
         "Inventaire":  "BSK-INF-004 PC Portable",
         "Affectation":  "technique",
-        "Service":  "",
-        "Localisation":  "local technique"
+        "Service":  "technique",
+        "Localisation":  "local technique",
+        "Marque":  "HP"
     },
     {
         "Inventaire":  "BSK-INF-005 PC Portable",
         "Affectation":  "Oussama",
-        "Service":  "",
-        "Localisation":  "local technique"
+        "Service":  "technique",
+        "Localisation":  "local technique",
+        "Marque":  "HP"
     },
     {
         "Inventaire":  "BSK-INF-006 PC Portable",
         "Affectation":  "Idriss",
-        "Service":  "",
-        "Localisation":  "local technique"
+        "Service":  "technique",
+        "Localisation":  "local technique",
+        "Marque":  "HP"
     },
     {
         "Inventaire":  "BSK-INF-007 PC Portable",
-        "Affectation":  "",
+        "Affectation":  "Ayoub",
         "Service":  "Achat",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  "HP"
     },
     {
         "Inventaire":  "BSK-INF-008 PC Portable",
-        "Affectation":  "",
+        "Affectation":  "Ayoub",
         "Service":  "Achat",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  "HP"
     },
     {
         "Inventaire":  "BSK-INF-009 PC Portable",
         "Affectation":  "Aicha",
         "Service":  "Achat",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  "HP"
     },
     {
         "Inventaire":  "BSK-INF-010 PC Portable",
         "Affectation":  "Rachida",
         "Service":  "Comptabilité",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  "HP"
     },
     {
         "Inventaire":  "BSK-INF-011 PC Portable",
         "Affectation":  "Ghizlane",
         "Service":  "A.O",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  "HP"
     },
     {
         "Inventaire":  "BSK-INF-012 PC Portable",
         "Affectation":  "Meriam",
         "Service":  "A.R",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  "HP"
     },
     {
         "Inventaire":  "BSK-INF-013 PC Portable",
-        "Affectation":  "",
+        "Affectation":  "Hamid",
         "Service":  "Commercial",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  "HP"
     },
     {
         "Inventaire":  "BSK-INF-014 PC Portable",
         "Affectation":  "Sara",
         "Service":  "Commercial",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  "HP"
     },
     {
         "Inventaire":  "BSK-INF-015 PC Portable",
         "Affectation":  "MARDIOUI",
         "Service":  "Qualité",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  "Thinkpad"
     },
     {
         "Inventaire":  "BSK-INF-016 PC Portable",
         "Affectation":  "Mr Fettahi",
         "Service":  "direction",
-        "Localisation":  "Bureau DG"
+        "Localisation":  "Bureau DG",
+        "Marque":  "Hawlette-packard"
     },
     {
         "Inventaire":  "BSK-INF-017 PC Portable",
         "Affectation":  "Mr Fettahi",
         "Service":  "direction",
-        "Localisation":  "Bureau DG"
+        "Localisation":  "Bureau DG",
+        "Marque":  "DELL"
     },
     {
         "Inventaire":  "BSK-INF-018 PC Portable",
         "Affectation":  "",
         "Service":  "Moyens généraux",
-        "Localisation":  "Salle archive"
+        "Localisation":  "Salle archive",
+        "Marque":  "DELL"
     },
     {
         "Inventaire":  "BSK-INF-019 PC Portable",
         "Affectation":  "",
         "Service":  "Moyens généraux",
-        "Localisation":  "Salle archive"
+        "Localisation":  "Salle archive",
+        "Marque":  "HP"
     },
     {
         "Inventaire":  "BSK-INF-001 FAX",
         "Affectation":  "Administration",
         "Service":  "Administration",
-        "Localisation":  ""
+        "Localisation":  "2eme Etage",
+        "Marque":  "Brother"
     },
     {
         "Inventaire":  "BSK-INF-001 Poste ordinateur",
         "Affectation":  "Zineb",
         "Service":  "RH",
-        "Localisation":  "Accueille"
+        "Localisation":  "Accueille",
+        "Marque":  "HP"
     },
     {
         "Inventaire":  "BSK-INF-002 Poste ordinateur",
-        "Affectation":  "",
+        "Affectation":  "Youssef",
         "Service":  "stock",
-        "Localisation":  "bureau stock"
+        "Localisation":  "bureau stock",
+        "Marque":  "Gigabyte"
     },
     {
         "Inventaire":  "BSK-INF-003 Poste ordinateur",
         "Affectation":  "mohammed",
         "Service":  "stock",
-        "Localisation":  "bureau stock"
+        "Localisation":  "bureau stock",
+        "Marque":  "HP"
     },
     {
         "Inventaire":  "BSK-INF-004 Poste ordinateur",
         "Affectation":  "technique",
-        "Service":  "",
-        "Localisation":  "local technique"
+        "Service":  "technique",
+        "Localisation":  "local technique",
+        "Marque":  "HP pro"
     },
     {
         "Inventaire":  "BSK-INF-005 Poste ordinateur",
         "Affectation":  "Hasnaa",
         "Service":  "RH",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  "Lenovo"
     },
     {
         "Inventaire":  "BSK-INF-006 Poste ordinateur",
         "Affectation":  "Hiba",
         "Service":  "Achat",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  "DELL"
     },
     {
         "Inventaire":  "BSK-INF-007 Poste ordinateur",
         "Affectation":  "Rachida",
         "Service":  "Comptabilité",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  "thinkvision"
     },
     {
         "Inventaire":  "BSK-INF-008 Poste ordinateur",
         "Affectation":  "Amina",
         "Service":  "Comptabilité",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  "Lenovo"
     },
     {
         "Inventaire":  "BSK-INF-009 Poste ordinateur",
         "Affectation":  "Ghizlane",
         "Service":  "A.O",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  "HP"
     },
     {
         "Inventaire":  "BSK-INF-010 Poste ordinateur",
         "Affectation":  "Intissar",
         "Service":  "A.O",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  "Gigabyte"
     },
     {
         "Inventaire":  "BSK-INF-011 Poste ordinateur",
         "Affectation":  "Asmaa",
         "Service":  "A.O",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  "HP"
     },
     {
         "Inventaire":  "BSK-INF-012 Poste ordinateur",
         "Affectation":  "Zineb Bouchama",
         "Service":  "A.R",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  "Gigabyte"
     },
     {
         "Inventaire":  "BSK-INF-013 Poste ordinateur",
         "Affectation":  "Oumaima",
         "Service":  "Commercial",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  "HP"
     },
     {
         "Inventaire":  "BSK-INF-014 Poste ordinateur",
         "Affectation":  "Khadija",
         "Service":  "Commercial",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  "DELL"
     },
     {
         "Inventaire":  "BSK-INF-015 Poste ordinateur",
         "Affectation":  "Sara",
         "Service":  "Commercial",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  "Thinkcentre"
     },
     {
         "Inventaire":  "BSK-INF-016 Poste ordinateur",
         "Affectation":  "Souhaila",
         "Service":  "Commercial",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  "Hp"
     },
     {
         "Inventaire":  "BSK-INF-017 Poste ordinateur",
         "Affectation":  "Laila",
-        "Service":  "",
-        "Localisation":  "2eme Etage"
+        "Service":  "SAV",
+        "Localisation":  "2eme Etage",
+        "Marque":  "Hp"
     },
     {
         "Inventaire":  "BSK-INF-018 Poste ordinateur",
         "Affectation":  "Asmaa Acoussi",
         "Service":  "direction",
-        "Localisation":  "3ème Etage"
+        "Localisation":  "3ème Etage",
+        "Marque":  "Lenovo"
     },
     {
         "Inventaire":  "BSK-INF-019 Poste ordinateur",
         "Affectation":  "",
         "Service":  "Moyens généraux",
-        "Localisation":  "Salle archive"
+        "Localisation":  "Salle archive",
+        "Marque":  "Hp"
     },
     {
         "Inventaire":  "BSK-INF-020 Poste ordinateur",
         "Affectation":  "",
         "Service":  "Moyens généraux",
-        "Localisation":  "Salle archive"
+        "Localisation":  "Salle archive",
+        "Marque":  "Hp"
     },
     {
         "Inventaire":  "BSK-INF-021 Poste ordinateur",
         "Affectation":  "",
         "Service":  "Moyens généraux",
-        "Localisation":  "Salle archive"
+        "Localisation":  "Salle archive",
+        "Marque":  "DELL"
     },
     {
         "Inventaire":  "BSK-INF-022 Poste ordinateur",
         "Affectation":  "",
         "Service":  "Moyens généraux",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-INF-001 Imprimante",
         "Affectation":  "Stock",
         "Service":  "stock",
-        "Localisation":  "Bureau Stock"
+        "Localisation":  "Bureau Stock",
+        "Marque":  "HP Laser Jet M211 dw"
     },
     {
         "Inventaire":  "BSK-INF-002 Imprimante",
         "Affectation":  "technique",
-        "Service":  "",
-        "Localisation":  "local technique"
+        "Service":  "technique",
+        "Localisation":  "local technique",
+        "Marque":  "HP Laser Jet M211 dw"
     },
     {
         "Inventaire":  "BSK-INF-003 Imprimante",
         "Affectation":  "Rabie",
-        "Service":  "",
-        "Localisation":  "local technique"
+        "Service":  "technique",
+        "Localisation":  "local technique",
+        "Marque":  "HP M183 FW"
     },
     {
         "Inventaire":  "BSK-INF-004 Imprimante",
         "Affectation":  "technique",
-        "Service":  "",
-        "Localisation":  "local technique"
+        "Service":  "technique",
+        "Localisation":  "local technique",
+        "Marque":  "HP color Laser 150a"
     },
     {
         "Inventaire":  "BSK-INF-005 Imprimante",
         "Affectation":  "Achat",
         "Service":  "Achat",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  "HP Laser 107a"
     },
     {
         "Inventaire":  "BSK-INF-006 Imprimante",
         "Affectation":  "Comptabilité",
         "Service":  "Comptabilité",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  "HP Laser Jet M211 dw"
     },
     {
         "Inventaire":  "BSK-INF-007 Imprimante",
         "Affectation":  "A.O",
         "Service":  "A.O",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  "HP Laser Jet M211 dw"
     },
     {
         "Inventaire":  "BSK-INF-008 Imprimante",
         "Affectation":  "Commercial",
         "Service":  "Commercial",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  "HP Laser Jet M211 dw"
     },
     {
         "Inventaire":  "BSK-INF-009 Imprimante",
         "Affectation":  "Commercial",
         "Service":  "Commercial",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  "HP Laser Jet M211 dw"
     },
     {
         "Inventaire":  "BSK-INF-010 Imprimante",
         "Affectation":  "Mr Fettahi",
         "Service":  "direction",
-        "Localisation":  "Bureau Mr fettahi"
+        "Localisation":  "Bureau Mr fettahi",
+        "Marque":  "HP"
     },
     {
         "Inventaire":  "BSK-INF-011 Imprimante",
         "Affectation":  "Asmaa Accouassi",
         "Service":  "direction",
-        "Localisation":  "3ème Etage"
+        "Localisation":  "3ème Etage",
+        "Marque":  "HP Laser Jet M211 dw"
     },
     {
         "Inventaire":  "BSK-INF-012 Imprimante",
-        "Affectation":  "",
-        "Service":  "",
-        "Localisation":  "2eme Etage"
+        "Affectation":  "Réserve",
+        "Service":  "Réserve",
+        "Localisation":  "2eme Etage",
+        "Marque":  "HP Laser Jet M211 dw"
     },
     {
         "Inventaire":  "BSK-INF-013 Imprimante",
         "Affectation":  "",
         "Service":  "Moyens généraux",
-        "Localisation":  "Salle d\u0027archive"
+        "Localisation":  "Salle d\u0027archive",
+        "Marque":  "HP LaserJet P1606dn"
     },
     {
         "Inventaire":  "BSK-INF-014 Imprimante",
         "Affectation":  "",
         "Service":  "Moyens généraux",
-        "Localisation":  "Salle d\u0027archive"
+        "Localisation":  "Salle d\u0027archive",
+        "Marque":  "LaserJet pro M201 dw"
     },
     {
         "Inventaire":  "BSK-INF-015 Imprimante",
         "Affectation":  "",
         "Service":  "Moyens généraux",
-        "Localisation":  "Salle d\u0027archive"
+        "Localisation":  "Salle d\u0027archive",
+        "Marque":  "HP LaserJet P2035"
     },
     {
         "Inventaire":  "BSK-INF-016 Imprimante",
         "Affectation":  "",
         "Service":  "Moyens généraux",
-        "Localisation":  "Salle d\u0027archive"
+        "Localisation":  "Salle d\u0027archive",
+        "Marque":  "LaserJet pro M203dn"
     },
     {
         "Inventaire":  "BSK-INF-017 Imprimante",
         "Affectation":  "",
         "Service":  "Moyens généraux",
-        "Localisation":  "Salle d\u0027archive"
+        "Localisation":  "Salle d\u0027archive",
+        "Marque":  "LaserJet pro M203dn"
     },
     {
         "Inventaire":  "BSK-INF-001 Projecteur",
         "Affectation":  "technique",
-        "Service":  "",
-        "Localisation":  "local technique"
+        "Service":  "technique",
+        "Localisation":  "local technique",
+        "Marque":  "EPSON"
     },
     {
         "Inventaire":  "BSK-INF-002 Projecteur",
         "Affectation":  "Salle de réunion",
-        "Service":  "",
-        "Localisation":  "3ème Etage"
+        "Service":  "Direction",
+        "Localisation":  "3ème Etage",
+        "Marque":  "EPSON"
     },
     {
         "Inventaire":  "BSK-INF-001 TP-LINK",
         "Affectation":  "Stock",
         "Service":  "stock",
-        "Localisation":  "bureau de stock"
+        "Localisation":  "bureau de stock",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-INF-001 Pointeuse",
         "Affectation":  "R.H",
         "Service":  "R.H",
-        "Localisation":  "Entré"
+        "Localisation":  "Entré",
+        "Marque":  "HIKVISION"
     },
     {
         "Inventaire":  "BSK-INF-002 Pointeuse",
         "Affectation":  "R.H",
         "Service":  "R.H",
-        "Localisation":  "Salle d\u0027archive"
+        "Localisation":  "Salle d\u0027archive",
+        "Marque":  "ZKT"
     },
     {
         "Inventaire":  "BSK-INF-003 Pointeuse",
         "Affectation":  "R.H",
         "Service":  "R.H",
-        "Localisation":  "Salle d\u0027archive"
+        "Localisation":  "Salle d\u0027archive",
+        "Marque":  "ZKT"
     },
     {
         "Inventaire":  "BSK-INF-004 Pointeuse",
         "Affectation":  "R.H",
         "Service":  "R.H",
-        "Localisation":  "Salle d\u0027archive"
+        "Localisation":  "Salle d\u0027archive",
+        "Marque":  "ZKS"
     },
     {
         "Inventaire":  "BSK-INF-005 Pointeuse",
         "Affectation":  "Stock",
         "Service":  "stock",
-        "Localisation":  "Salle N°34"
+        "Localisation":  "Salle N°34",
+        "Marque":  "ZKT"
     },
     {
         "Inventaire":  "BSK-INF-006 Pointeuse",
         "Affectation":  "technique",
-        "Service":  "",
-        "Localisation":  "local technique"
+        "Service":  "technique",
+        "Localisation":  "local technique",
+        "Marque":  "ZKT"
     },
     {
         "Inventaire":  "BSK-INF-007 Pointeuse",
         "Affectation":  "Administration",
         "Service":  "Administration",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  "ZKT"
     },
     {
         "Inventaire":  "BSK-INF-008 Pointeuse",
-        "Affectation":  "",
-        "Service":  "",
-        "Localisation":  "3ème Etage"
+        "Affectation":  "Direction",
+        "Service":  "Direction",
+        "Localisation":  "3ème Etage",
+        "Marque":  "ZKT"
     },
     {
         "Inventaire":  "BSK-INF-001 scanner de chèques",
         "Affectation":  "Comptabilité",
         "Service":  "Comptabilité",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  "ARCA"
     },
     {
         "Inventaire":  "BSK-INF-002 scanner de chèques",
         "Affectation":  "Comptabilité",
         "Service":  "Comptabilité",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  "ARCA"
     },
     {
         "Inventaire":  "BSK-TRS-001 Chariot",
         "Affectation":  "Stock",
         "Service":  "Stock",
-        "Localisation":  "Stock RDC"
+        "Localisation":  "Stock RDC",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-TRS-002 Chariot",
         "Affectation":  "Stock",
         "Service":  "Stock",
-        "Localisation":  "Stock RDC"
+        "Localisation":  "Stock RDC",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-TRS-003 Chariot",
         "Affectation":  "Stock",
         "Service":  "Stock",
-        "Localisation":  "Stock mezzanine"
+        "Localisation":  "Stock mezzanine",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-TRS-004 Chariot",
         "Affectation":  "Stock",
         "Service":  "Stock",
-        "Localisation":  "Stock 1er étage"
+        "Localisation":  "Stock 1er étage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-TRS-005 Chariot",
         "Affectation":  "Stock",
         "Service":  "Stock",
-        "Localisation":  "Stock 1er étage"
+        "Localisation":  "Stock 1er étage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-TRS-001 Transpalette",
         "Affectation":  "Stock",
         "Service":  "Stock",
-        "Localisation":  "Stock RDC"
+        "Localisation":  "Stock RDC",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-TRS-002 Transpalette",
         "Affectation":  "Stock",
         "Service":  "Stock",
-        "Localisation":  "Stock RDC"
+        "Localisation":  "Stock RDC",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-TRS-001 Balance",
         "Affectation":  "Stock",
         "Service":  "Stock",
-        "Localisation":  "Stock RDC"
+        "Localisation":  "Stock RDC",
+        "Marque":  ""
     },
     {
         "Inventaire":  "BSK-ELECTRO-001 Réfrigérateur",
         "Affectation":  "Direction",
         "Service":  "Direction",
-        "Localisation":  "espace privé"
+        "Localisation":  "espace privé",
+        "Marque":  "BEKO"
     },
     {
         "Inventaire":  "BSK-ELECTRO-002 Réfrigérateur",
-        "Affectation":  "",
-        "Service":  "",
-        "Localisation":  ""
+        "Affectation":  "Réfectoire",
+        "Service":  "Réfectoire",
+        "Localisation":  "Réfectoire",
+        "Marque":  "SIERA"
+    },
+    {
+        "Inventaire":  "BSK-ELECTRO-001 Micro onde",
+        "Affectation":  "Réfectoire",
+        "Service":  "Réfectoire",
+        "Localisation":  "Réfectoire",
+        "Marque":  "ARTHUR MARTIN"
+    },
+    {
+        "Inventaire":  "BSK-ELECTRO-002 Micro onde",
+        "Affectation":  "Réfectoire",
+        "Service":  "Réfectoire",
+        "Localisation":  "Réfectoire",
+        "Marque":  "TAURUS"
     },
     {
         "Inventaire":  "BSK-ELECTRO-001 panineuse",
-        "Affectation":  "",
-        "Service":  "",
-        "Localisation":  ""
+        "Affectation":  "Réfectoire",
+        "Service":  "Réfectoire",
+        "Localisation":  "Réfectoire",
+        "Marque":  "TAURUS"
     },
     {
         "Inventaire":  "BSK-ELECTRO-001 Machine à café",
         "Affectation":  "Direction",
         "Service":  "Direction",
-        "Localisation":  "espace privé"
+        "Localisation":  "espace privé",
+        "Marque":  "NESPRESSO"
     },
     {
         "Inventaire":  "BSK-ELECTRO-002 Machine à café",
         "Affectation":  "Administration",
         "Service":  "Administration",
-        "Localisation":  "2eme Etage"
+        "Localisation":  "2eme Etage",
+        "Marque":  "NESPRESSO"
+    },
+    {
+        "Inventaire":  "BSK-ELECTRO-001 Bouilloire",
+        "Affectation":  "Direction",
+        "Service":  "Direction",
+        "Localisation":  "espace privé",
+        "Marque":  "TAURUS"
+    },
+    {
+        "Inventaire":  "BSK-ELECTRO-002 Bouilloire",
+        "Affectation":  "Administration",
+        "Service":  "Administration",
+        "Localisation":  "2eme Etage",
+        "Marque":  "TAURUS"
+    },
+    {
+        "Inventaire":  "BSK-ELECTRO-001- refroidisseur d\u0027eau",
+        "Affectation":  "Administration",
+        "Service":  "Administration",
+        "Localisation":  "2eme Etage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-001 Bureau (Comptoir)",
         "Affectation":  "Commercial",
         "Service":  "commercial",
-        "Localisation":  "RDC"
+        "Localisation":  "RDC",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-002 Bureau (Comptoir)",
         "Affectation":  "Commercial",
         "Service":  "commercial",
-        "Localisation":  "Salle de réunion"
+        "Localisation":  "Salle de réunion",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-003 Bureau",
         "Affectation":  "Mme Latifa",
         "Service":  "Direction",
-        "Localisation":  "Bureau Mme Latifa"
+        "Localisation":  "Bureau Mme Latifa",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-004 Bureau",
         "Affectation":  "Commercial",
         "Service":  "commercial",
-        "Localisation":  "RDC"
+        "Localisation":  "RDC",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-005 Bureau",
         "Affectation":  "Commercial",
         "Service":  "commercial",
-        "Localisation":  "RDC"
+        "Localisation":  "RDC",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-006 Bureau",
         "Affectation":  "Commercial",
         "Service":  "commercial",
-        "Localisation":  "RDC"
+        "Localisation":  "RDC",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-007 Bureau",
         "Affectation":  "Commercial",
         "Service":  "commercial",
-        "Localisation":  "RDC"
+        "Localisation":  "RDC",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-008 Bureau",
         "Affectation":  "Brahim",
         "Service":  "Stock",
-        "Localisation":  "MEZZANINE"
+        "Localisation":  "MEZZANINE",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-009 Bureau",
         "Affectation":  "Direction",
         "Service":  "RH",
-        "Localisation":  "bureau 1er étage"
+        "Localisation":  "bureau 1er étage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-010 Bureau",
         "Affectation":  "Mr FETTAHI",
         "Service":  "Direction",
-        "Localisation":  "Bureau Mr FETTAHI"
+        "Localisation":  "Bureau Mr FETTAHI",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-001 Chaise",
         "Affectation":  "Mme Latifa",
         "Service":  "Direction",
-        "Localisation":  "Bureau Mme Latifa"
+        "Localisation":  "Bureau Mme Latifa",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-002 Chaise",
         "Affectation":  "Mme Latifa",
         "Service":  "Direction",
-        "Localisation":  "Bureau Mme Latifa"
+        "Localisation":  "Bureau Mme Latifa",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-003 Chaise",
         "Affectation":  "Mme Latifa",
         "Service":  "Direction",
-        "Localisation":  "Bureau Mme Latifa"
+        "Localisation":  "Bureau Mme Latifa",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-004 Chaise",
         "Affectation":  "Radia",
         "Service":  "commercial",
-        "Localisation":  "RDC"
+        "Localisation":  "RDC",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-005 Chaise",
         "Affectation":  "safaa",
         "Service":  "commercial",
-        "Localisation":  "RDC"
+        "Localisation":  "RDC",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-006 Chaise",
         "Affectation":  "hiba",
         "Service":  "commercial",
-        "Localisation":  "RDC"
+        "Localisation":  "RDC",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-007 Chaise",
         "Affectation":  "commercial",
         "Service":  "commercial",
-        "Localisation":  "RDC"
+        "Localisation":  "RDC",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-008 Chaise",
         "Affectation":  "commercial",
         "Service":  "commercial",
-        "Localisation":  "RDC"
+        "Localisation":  "RDC",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-009 Chaise",
         "Affectation":  "commercial",
         "Service":  "commercial",
-        "Localisation":  "RDC"
+        "Localisation":  "RDC",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-010 Chaise",
         "Affectation":  "commercial",
         "Service":  "commercial",
-        "Localisation":  "1er étage"
+        "Localisation":  "1er étage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-011 Chaise",
         "Affectation":  "commercial",
         "Service":  "commercial",
-        "Localisation":  "1er étage"
+        "Localisation":  "1er étage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-012 Chaise",
         "Affectation":  "Brahim",
         "Service":  "Stock",
-        "Localisation":  "Sous-sol"
+        "Localisation":  "Sous-sol",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-013 Chaise",
         "Affectation":  "Stock",
         "Service":  "Stock",
-        "Localisation":  "Sous-sol"
+        "Localisation":  "Sous-sol",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-014 Chaise",
         "Affectation":  "Salle de réunion",
         "Service":  "RH",
-        "Localisation":  "1er étage"
+        "Localisation":  "1er étage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-015 Chaise",
         "Affectation":  "Salle de réunion",
         "Service":  "RH",
-        "Localisation":  "1er étage"
+        "Localisation":  "1er étage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-016 Chaise",
         "Affectation":  "Salle de réunion",
         "Service":  "RH",
-        "Localisation":  "1er étage"
+        "Localisation":  "1er étage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-017 Chaise",
         "Affectation":  "Salle de réunion",
         "Service":  "RH",
-        "Localisation":  "1er étage"
+        "Localisation":  "1er étage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-018 Chaise",
         "Affectation":  "Salle de réunion",
         "Service":  "RH",
-        "Localisation":  "1er étage"
+        "Localisation":  "1er étage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-019 Chaise",
         "Affectation":  "Salle de réunion",
         "Service":  "RH",
-        "Localisation":  "1er étage"
+        "Localisation":  "1er étage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-020 Chaise",
         "Affectation":  "Direction",
         "Service":  "RH",
-        "Localisation":  "bureau 1er étage"
+        "Localisation":  "bureau 1er étage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-021 Chaise",
         "Affectation":  "Direction",
         "Service":  "RH",
-        "Localisation":  "bureau 1er étage"
+        "Localisation":  "bureau 1er étage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-022 Chaise",
         "Affectation":  "Mr FETTAHI",
         "Service":  "Direction",
-        "Localisation":  "Bureau Mr FETTAHI"
+        "Localisation":  "Bureau Mr FETTAHI",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-023 Chaise",
         "Affectation":  "Mr FETTAHI",
         "Service":  "Direction",
-        "Localisation":  "Bureau Mr FETTAHI"
+        "Localisation":  "Bureau Mr FETTAHI",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-001 Caisson",
         "Affectation":  "Safaa",
         "Service":  "commercial",
-        "Localisation":  "RDC"
+        "Localisation":  "RDC",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-002 Caisson",
         "Affectation":  "Radia",
         "Service":  "commercial",
-        "Localisation":  "RDC"
+        "Localisation":  "RDC",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-003 Caisson",
         "Affectation":  "hiba",
         "Service":  "commercial",
-        "Localisation":  "RDC"
+        "Localisation":  "RDC",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-004 Caisson",
         "Affectation":  "Commercial",
         "Service":  "commercial",
-        "Localisation":  "RDC"
+        "Localisation":  "RDC",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-005 Caisson",
         "Affectation":  "Commercial",
         "Service":  "commercial",
-        "Localisation":  "RDC"
+        "Localisation":  "RDC",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-006 Caisson",
         "Affectation":  "Commercial",
         "Service":  "commercial",
-        "Localisation":  "RDC"
+        "Localisation":  "RDC",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-007 Caisson",
         "Affectation":  "Hamza",
         "Service":  "Livraison",
-        "Localisation":  "RDC"
+        "Localisation":  "RDC",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-008 Caisson",
         "Affectation":  "Brahim",
         "Service":  "Stock",
-        "Localisation":  "Sous-sol"
+        "Localisation":  "Sous-sol",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-009 Caisson",
         "Affectation":  "commercial",
         "Service":  "commercial",
-        "Localisation":  "1er étage"
+        "Localisation":  "1er étage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-010 Caisson",
         "Affectation":  "commercial",
         "Service":  "commercial",
-        "Localisation":  "1er étage"
+        "Localisation":  "1er étage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-011 Caisson",
         "Affectation":  "commercial",
         "Service":  "commercial",
-        "Localisation":  "1er étage"
+        "Localisation":  "1er étage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-012 Caisson",
         "Affectation":  "Mr FETTAHI",
         "Service":  "Direction",
-        "Localisation":  "Bureau Mr FETTAHI"
+        "Localisation":  "Bureau Mr FETTAHI",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-013 Caisson",
         "Affectation":  "Mr FETTAHI",
         "Service":  "Direction",
-        "Localisation":  "Bureau Mr FETTAHI"
+        "Localisation":  "Bureau Mr FETTAHI",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-001 Placard bureau",
         "Affectation":  "Mme Latifa",
         "Service":  "Direction",
-        "Localisation":  "Bureau Mme Latifa"
+        "Localisation":  "Bureau Mme Latifa",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-002 Placard bureau",
         "Affectation":  "Mme Latifa",
         "Service":  "Direction",
-        "Localisation":  "Bureau Mme Latifa"
+        "Localisation":  "Bureau Mme Latifa",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-003 Placard bureau",
         "Affectation":  "Mme Latifa",
         "Service":  "Direction",
-        "Localisation":  "Bureau Mme Latifa"
+        "Localisation":  "Bureau Mme Latifa",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-004 Placard bureau",
         "Affectation":  "Commercial",
         "Service":  "commercial",
-        "Localisation":  "RDC"
+        "Localisation":  "RDC",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-005 Placard bureau",
         "Affectation":  "Commercial",
         "Service":  "commercial",
-        "Localisation":  "RDC"
+        "Localisation":  "RDC",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-006 Placard bureau",
         "Affectation":  "Commercial",
         "Service":  "commercial",
-        "Localisation":  "RDC"
+        "Localisation":  "RDC",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-007 Placard bureau",
         "Affectation":  "Mr FETTAHI",
         "Service":  "Direction",
-        "Localisation":  "Bureau Mr FETTAHI"
+        "Localisation":  "Bureau Mr FETTAHI",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-008 Placard bureau",
         "Affectation":  "Mr FETTAHI",
         "Service":  "Direction",
-        "Localisation":  "Bureau Mr FETTAHI"
+        "Localisation":  "Bureau Mr FETTAHI",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-001 Placard archive",
         "Affectation":  "commercial",
         "Service":  "commercial",
-        "Localisation":  "RDC"
+        "Localisation":  "RDC",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-002 Placard archive",
         "Affectation":  "commercial",
         "Service":  "commercial",
-        "Localisation":  "RDC"
+        "Localisation":  "RDC",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-003 Placard archive",
         "Affectation":  "Stock",
         "Service":  "Stock",
-        "Localisation":  "Sous-sol"
+        "Localisation":  "Sous-sol",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-004 Placard archive",
         "Affectation":  "Stock",
         "Service":  "Stock",
-        "Localisation":  "Sous-sol"
+        "Localisation":  "Sous-sol",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-001 Tableau blanc",
         "Affectation":  "RH",
         "Service":  "RH",
-        "Localisation":  "RDC"
+        "Localisation":  "RDC",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-002 Tableau blanc",
         "Affectation":  "Stock",
         "Service":  "Stock",
-        "Localisation":  "Sous-sol"
+        "Localisation":  "Sous-sol",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-001 Table cantine",
         "Affectation":  "Cantine",
         "Service":  "Moyens généraux",
-        "Localisation":  "Cantine"
+        "Localisation":  "Cantine",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-002 Table cantine",
         "Affectation":  "Cantine",
         "Service":  "Moyens généraux",
-        "Localisation":  "Cantine"
+        "Localisation":  "Cantine",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-003 Table cantine",
         "Affectation":  "Cantine",
         "Service":  "Moyens généraux",
-        "Localisation":  "Cantine"
+        "Localisation":  "Cantine",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-001 Chaise plastique",
         "Affectation":  "Cantine",
         "Service":  "Moyens généraux",
-        "Localisation":  "Cantine"
+        "Localisation":  "Cantine",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-002 Chaise plastique",
         "Affectation":  "Cantine",
         "Service":  "Moyens généraux",
-        "Localisation":  "Cantine"
+        "Localisation":  "Cantine",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-003 Chaise plastique",
         "Affectation":  "Cantine",
         "Service":  "Moyens généraux",
-        "Localisation":  "Cantine"
+        "Localisation":  "Cantine",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-004 Chaise plastique",
         "Affectation":  "Cantine",
         "Service":  "Moyens généraux",
-        "Localisation":  "Cantine"
+        "Localisation":  "Cantine",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-005 Chaise plastique",
         "Affectation":  "Cantine",
         "Service":  "Moyens généraux",
-        "Localisation":  "Cantine"
+        "Localisation":  "Cantine",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-006 Chaise plastique",
         "Affectation":  "Cantine",
         "Service":  "Moyens généraux",
-        "Localisation":  "Cantine"
+        "Localisation":  "Cantine",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-007 Chaise plastique",
         "Affectation":  "Cantine",
         "Service":  "Moyens généraux",
-        "Localisation":  "Cantine"
+        "Localisation":  "Cantine",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-008 Chaise plastique",
         "Affectation":  "Cantine",
         "Service":  "Moyens généraux",
-        "Localisation":  "Cantine"
+        "Localisation":  "Cantine",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-009 Chaise plastique",
         "Affectation":  "Cantine",
         "Service":  "Moyens généraux",
-        "Localisation":  "Cantine"
+        "Localisation":  "Cantine",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-010 Chaise plastique",
         "Affectation":  "Cantine",
         "Service":  "Moyens généraux",
-        "Localisation":  "Cantine"
+        "Localisation":  "Cantine",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-011 Chaise plastique",
         "Affectation":  "Cantine",
         "Service":  "Moyens généraux",
-        "Localisation":  "Cantine"
+        "Localisation":  "Cantine",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-012 Chaise plastique",
         "Affectation":  "Cantine",
         "Service":  "Moyens généraux",
-        "Localisation":  "Cantine"
+        "Localisation":  "Cantine",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-001 table verre et bois",
         "Affectation":  "Mr FETTAHI",
         "Service":  "Direction",
-        "Localisation":  "Bureau Mr FETTAHI"
+        "Localisation":  "Bureau Mr FETTAHI",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-001 table bois",
         "Affectation":  "Mr FETTAHI",
         "Service":  "Direction",
-        "Localisation":  "Bureau Mr FETTAHI"
+        "Localisation":  "Bureau Mr FETTAHI",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-001 table salle de réunion",
         "Affectation":  "Salle de réunion",
         "Service":  "RH",
-        "Localisation":  "1er étage"
+        "Localisation":  "1er étage",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-001 retour de bureau",
         "Affectation":  "Mme Latifa",
         "Service":  "Direction",
-        "Localisation":  "Bureau Mme Latifa"
+        "Localisation":  "Bureau Mme Latifa",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-001 vitrine en verre et bois",
         "Affectation":  "Mr FETTAHI",
         "Service":  "Direction",
-        "Localisation":  "Bureau Mr FETTAHI"
+        "Localisation":  "Bureau Mr FETTAHI",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-MOB-001 caisse",
         "Affectation":  "Mme Latifa",
         "Service":  "Direction",
-        "Localisation":  "Bureau Mme Latifa"
+        "Localisation":  "Bureau Mme Latifa",
+        "Marque":  "CASIO 130CR"
     },
     {
         "Inventaire":  "POLO-TELF-001 Téléphone fixe (standard)",
         "Affectation":  "Mme Latifa",
         "Service":  "Direction",
-        "Localisation":  "Bureau Mme Latifa"
+        "Localisation":  "Bureau Mme Latifa",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-TELF-002 Téléphone fixe (standard)",
         "Affectation":  "Commercial",
         "Service":  "Commercial",
-        "Localisation":  "RDC"
+        "Localisation":  "RDC",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-TELF-003 Téléphone fixe (standard)",
         "Affectation":  "Mr FETTAHI",
         "Service":  "Direction",
-        "Localisation":  "Bureau Mr FETTAHI"
+        "Localisation":  "Bureau Mr FETTAHI",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-TELF-004 Téléphone fixe",
         "Affectation":  "Hiba",
         "Service":  "Commercial",
-        "Localisation":  "RDC"
+        "Localisation":  "RDC",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-TELF-005 Téléphone fixe",
         "Affectation":  "Commercial",
         "Service":  "Commercial",
-        "Localisation":  "RDC"
+        "Localisation":  "RDC",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-TELF-006 Téléphone fixe",
         "Affectation":  "Hamza",
         "Service":  "livraison",
-        "Localisation":  "RDC"
+        "Localisation":  "RDC",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-TELF-007 Téléphone fixe",
-        "Affectation":  "",
+        "Affectation":  "Brahim",
         "Service":  "Stock",
-        "Localisation":  "Sous-sol"
+        "Localisation":  "Sous-sol",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-TELF-008 Téléphone fixe",
         "Affectation":  "Radia",
         "Service":  "Commercial",
-        "Localisation":  "RDC"
+        "Localisation":  "RDC",
+        "Marque":  ""
+    },
+    {
+        "Inventaire":  "POLO-TELM-001 Téléphone mobile",
+        "Affectation":  "Mme Latifa",
+        "Service":  "Direction",
+        "Localisation":  "Mme Latifa",
+        "Marque":  "Iphone 16 pro Max"
     },
     {
         "Inventaire":  "POLO-TELM-002 Téléphone mobile",
         "Affectation":  "Commercial",
         "Service":  "Commercial",
-        "Localisation":  "RDC"
+        "Localisation":  "RDC",
+        "Marque":  "A03"
     },
     {
         "Inventaire":  "POLO-TELM-003 Téléphone mobile",
         "Affectation":  "Commercial",
         "Service":  "Commercial",
-        "Localisation":  "RDC"
+        "Localisation":  "RDC",
+        "Marque":  "A06"
     },
     {
         "Inventaire":  "POLO-TELM-004 Téléphone mobile",
         "Affectation":  "HOUSSAM",
         "Service":  "livraison",
-        "Localisation":  "polo"
+        "Localisation":  "polo",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-TELM-005 Téléphone mobile",
         "Affectation":  "ABDENNASAR",
         "Service":  "livraison",
-        "Localisation":  "polo"
+        "Localisation":  "polo",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-TELM-006 Téléphone mobile",
         "Affectation":  "OTMAN",
         "Service":  "livraison",
-        "Localisation":  "polo"
+        "Localisation":  "polo",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-INF-001 Poste ordinateur",
         "Affectation":  "Mme Latifa",
         "Service":  "Direction",
-        "Localisation":  "Bureau Mme Latifa"
+        "Localisation":  "Bureau Mme Latifa",
+        "Marque":  "thinkcentre"
     },
     {
         "Inventaire":  "POLO-INF-002 Poste ordinateur",
         "Affectation":  "Commercial",
         "Service":  "Commercial",
-        "Localisation":  "RDC"
+        "Localisation":  "RDC",
+        "Marque":  "DELL"
     },
     {
         "Inventaire":  "POLO-INF-003 Poste ordinateur",
         "Affectation":  "SAFA",
         "Service":  "Commercial",
-        "Localisation":  "RDC"
+        "Localisation":  "RDC",
+        "Marque":  "HP"
     },
     {
         "Inventaire":  "POLO-INF-004 Poste ordinateur",
         "Affectation":  "HIBA",
         "Service":  "Commercial",
-        "Localisation":  "RDC"
+        "Localisation":  "RDC",
+        "Marque":  "lenovo"
     },
     {
         "Inventaire":  "POLO-INF-005 Poste ordinateur",
         "Affectation":  "RADIA",
         "Service":  "Commercial",
-        "Localisation":  "RDC"
+        "Localisation":  "RDC",
+        "Marque":  "HP"
     },
     {
         "Inventaire":  "POLO-INF-006 Poste ordinateur",
         "Affectation":  "Brahim",
         "Service":  "Stock",
-        "Localisation":  "Stock"
+        "Localisation":  "Stock",
+        "Marque":  "HP"
     },
     {
         "Inventaire":  "POLO-INF-007 Poste ordinateur",
         "Affectation":  "Mr FETTAHI",
         "Service":  "Direction",
-        "Localisation":  "Bureau Mr FETTAHI"
+        "Localisation":  "Bureau Mr FETTAHI",
+        "Marque":  "lenovo"
     },
     {
         "Inventaire":  "POLO-INF-001 Imprimante",
         "Affectation":  "Mme Latifa",
         "Service":  "Direction",
-        "Localisation":  "Bureau Mme Latifa"
+        "Localisation":  "Bureau Mme Latifa",
+        "Marque":  "HP laser Jet M211 dw"
     },
     {
         "Inventaire":  "POLO-INF-002 Imprimante",
         "Affectation":  "Commercial",
         "Service":  "Commercial",
-        "Localisation":  "RDC"
+        "Localisation":  "RDC",
+        "Marque":  "HP laser Jet M211 dw"
     },
     {
         "Inventaire":  "POLO-INF-003 Imprimante",
         "Affectation":  "Mr FETTAHI",
         "Service":  "Direction",
-        "Localisation":  "Bureau Mr FETTAHI"
+        "Localisation":  "Bureau Mr FETTAHI",
+        "Marque":  "HP laser Jet pro M201 dw"
     },
     {
         "Inventaire":  "POLO-INF-004 Imprimante",
         "Affectation":  "Mr FETTAHI",
         "Service":  "Direction",
-        "Localisation":  "Bureau Mr FETTAHI"
+        "Localisation":  "Bureau Mr FETTAHI",
+        "Marque":  "HP color laser jet CP1515 n"
     },
     {
         "Inventaire":  "POLO-INF-001 Pointeuse",
         "Affectation":  "POLO",
         "Service":  "RH",
-        "Localisation":  "RDC"
+        "Localisation":  "RDC",
+        "Marque":  "HIK VISION"
     },
     {
         "Inventaire":  "POLO-TRS-001 Chariot",
         "Affectation":  "Brahim",
         "Service":  "Stock",
-        "Localisation":  "Stock"
+        "Localisation":  "Stock",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-TRS-001 Balance",
         "Affectation":  "Mr FETTAHI",
         "Service":  "Direction",
-        "Localisation":  "Bureau Mr FETTAHI"
+        "Localisation":  "Bureau Mr FETTAHI",
+        "Marque":  "BAXTRAN"
     },
     {
         "Inventaire":  "POLO-ELECTRO-001 TV",
         "Affectation":  "Mme Latifa",
         "Service":  "Direction",
-        "Localisation":  "Bureau Mme Latifa"
+        "Localisation":  "Bureau Mme Latifa",
+        "Marque":  "Panasonic"
     },
     {
         "Inventaire":  "POLO-ELECTRO-002 TV",
         "Affectation":  "bureau vide",
         "Service":  "Direction",
-        "Localisation":  "1er etage"
+        "Localisation":  "1er etage",
+        "Marque":  "Panasonic"
     },
     {
         "Inventaire":  "POLO-ELECTRO-003 TV",
         "Affectation":  "Mr FETTAHI",
         "Service":  "Direction",
-        "Localisation":  "Bureau Mr FETTAHI"
+        "Localisation":  "Bureau Mr FETTAHI",
+        "Marque":  "Elexia"
     },
     {
         "Inventaire":  "POLO-ELECTRO-001 terminal de paiement électronique",
         "Affectation":  "Commercial",
         "Service":  "Commercial",
-        "Localisation":  "RDC"
+        "Localisation":  "RDC",
+        "Marque":  "Verifone"
     },
     {
         "Inventaire":  "POLO-ELECTRO-002 terminal de paiement électronique",
         "Affectation":  "Commercial",
         "Service":  "Commercial",
-        "Localisation":  "RDC"
+        "Localisation":  "RDC",
+        "Marque":  ""
     },
     {
         "Inventaire":  "POLO-ELECTRO-001 Machine à café",
         "Affectation":  "Mr FETTAHI",
         "Service":  "Direction",
-        "Localisation":  "Bureau Mr FETTAHI"
+        "Localisation":  "Bureau Mr FETTAHI",
+        "Marque":  "Nespresso"
+    },
+    {
+        "Inventaire":  "POLO-ELECTRO-001 Bouilloire",
+        "Affectation":  "Mr FETTAHI",
+        "Service":  "Direction",
+        "Localisation":  "Bureau Mr FETTAHI",
+        "Marque":  "tefal"
     },
     {
         "Inventaire":  "POLO-ELECTRO-001 micro onde",
         "Affectation":  "Cantine",
         "Service":  "Moyens généraux",
-        "Localisation":  "Cantine"
+        "Localisation":  "Cantine",
+        "Marque":  "whirpool"
     },
     {
         "Inventaire":  "POLO-ELECTRO-002 micro onde",
         "Affectation":  "Cantine",
         "Service":  "Moyens généraux",
-        "Localisation":  "Cantine"
+        "Localisation":  "Cantine",
+        "Marque":  "Samsung"
     },
     {
         "Inventaire":  "PAL-MOB-001 Bureau (Comptoir)",
         "Affectation":  "Commercial",
         "Service":  "Commercial",
-        "Localisation":  "RDC"
+        "Localisation":  "RDC",
+        "Marque":  ""
+    },
+    {
+        "Inventaire":  "PAL-MOB-002 Bureau",
+        "Affectation":  "NADIA",
+        "Service":  "Commercial",
+        "Localisation":  "RDC",
+        "Marque":  ""
     },
     {
         "Inventaire":  "PAL-MOB-001 Chaise",
         "Affectation":  "NADIA",
         "Service":  "Commercial",
-        "Localisation":  "RDC"
+        "Localisation":  "RDC",
+        "Marque":  ""
     },
     {
         "Inventaire":  "PAL-MOB-002 Chaise",
         "Affectation":  "SOUIDI",
         "Service":  "Commercial",
-        "Localisation":  "RDC"
+        "Localisation":  "RDC",
+        "Marque":  ""
     },
     {
         "Inventaire":  "PAL-MOB-003 Chaise",
         "Affectation":  "Commercial",
         "Service":  "Commercial",
-        "Localisation":  "RDC"
+        "Localisation":  "RDC",
+        "Marque":  ""
     },
     {
         "Inventaire":  "PAL-MOB-004 Chaise",
         "Affectation":  "Commercial",
         "Service":  "Commercial",
-        "Localisation":  "RDC"
+        "Localisation":  "RDC",
+        "Marque":  ""
     },
     {
         "Inventaire":  "PAL-MOB-005 Chaise",
         "Affectation":  "Commercial",
         "Service":  "Commercial",
-        "Localisation":  "RDC"
+        "Localisation":  "RDC",
+        "Marque":  ""
     },
     {
         "Inventaire":  "PAL-MOB-006 Chaise",
         "Affectation":  "Commercial",
         "Service":  "Commercial",
-        "Localisation":  "RDC"
+        "Localisation":  "RDC",
+        "Marque":  ""
     },
     {
         "Inventaire":  "PAL-MOB-007 Chaise",
         "Affectation":  "Commercial",
         "Service":  "Commercial",
-        "Localisation":  "MEZZANINE"
+        "Localisation":  "MEZZANINE",
+        "Marque":  ""
     },
     {
         "Inventaire":  "PAL-MOB-008 Chaise",
         "Affectation":  "Commercial",
         "Service":  "Commercial",
-        "Localisation":  "MEZZANINE"
+        "Localisation":  "MEZZANINE",
+        "Marque":  ""
     },
     {
         "Inventaire":  "PAL-MOB-001 Caisson",
         "Affectation":  "NADIA",
         "Service":  "Commercial",
-        "Localisation":  "RDC"
+        "Localisation":  "RDC",
+        "Marque":  ""
     },
     {
         "Inventaire":  "PAL-MOB-002 Caisson",
         "Affectation":  "Commercial",
         "Service":  "Commercial",
-        "Localisation":  "MEZZANINE"
+        "Localisation":  "MEZZANINE",
+        "Marque":  ""
     },
     {
         "Inventaire":  "PAL-MOB-001 Placard archive",
         "Affectation":  "Commercial",
         "Service":  "Commercial",
-        "Localisation":  "RDC"
+        "Localisation":  "RDC",
+        "Marque":  ""
     },
     {
         "Inventaire":  "PAL-MOB-002 Placard archive",
         "Affectation":  "Commercial",
         "Service":  "Commercial",
-        "Localisation":  "MEZZANINE"
+        "Localisation":  "MEZZANINE",
+        "Marque":  ""
     },
     {
         "Inventaire":  "PAL-MOB-003 Placard archive",
         "Affectation":  "Commercial",
         "Service":  "Commercial",
-        "Localisation":  "MEZZANINE"
+        "Localisation":  "MEZZANINE",
+        "Marque":  ""
     },
     {
         "Inventaire":  "PAL-MOB-001 vitrine en verre et alum",
         "Affectation":  "Stock",
         "Service":  "stock",
-        "Localisation":  "RDC"
+        "Localisation":  "RDC",
+        "Marque":  ""
     },
     {
         "Inventaire":  "PAL-MOB-002 vitrine en verre et alum",
         "Affectation":  "Stock",
         "Service":  "stock",
-        "Localisation":  "RDC"
+        "Localisation":  "RDC",
+        "Marque":  ""
     },
     {
         "Inventaire":  "PAL-MOB-003 vitrine en verre et alum",
         "Affectation":  "Stock",
         "Service":  "stock",
-        "Localisation":  "RDC"
+        "Localisation":  "RDC",
+        "Marque":  ""
+    },
+    {
+        "Inventaire":  "PAL-TELF-001 Téléphone fixe",
+        "Affectation":  "NADIA",
+        "Service":  "Commercial",
+        "Localisation":  "RDC",
+        "Marque":  ""
+    },
+    {
+        "Inventaire":  "PAL-TELF-002 Téléphone fixe",
+        "Affectation":  "Commercial",
+        "Service":  "Commercial",
+        "Localisation":  "RDC",
+        "Marque":  ""
+    },
+    {
+        "Inventaire":  "PAL-TELM-001 Téléphone mobile",
+        "Affectation":  "NADIA",
+        "Service":  "Commercial",
+        "Localisation":  "RDC",
+        "Marque":  "A04"
     },
     {
         "Inventaire":  "PAL-INF-001 Poste ordinateur",
         "Affectation":  "NADIA",
         "Service":  "Commercial",
-        "Localisation":  "RDC"
+        "Localisation":  "RDC",
+        "Marque":  "HP"
     },
     {
         "Inventaire":  "PAL-INF-002 Poste ordinateur",
         "Affectation":  "Commercial",
         "Service":  "Commercial",
-        "Localisation":  "RDC"
+        "Localisation":  "RDC",
+        "Marque":  "HP"
     },
     {
         "Inventaire":  "PAL-INF-003 Poste ordinateur",
         "Affectation":  "Commercial",
         "Service":  "Commercial",
-        "Localisation":  "RDC"
+        "Localisation":  "RDC",
+        "Marque":  "THINKCENTRE"
     },
     {
         "Inventaire":  "PAL-INF-001 Imprimante",
         "Affectation":  "Commercial",
         "Service":  "Commercial",
-        "Localisation":  "RDC"
+        "Localisation":  "RDC",
+        "Marque":  "HP LASER JET M211 dw"
     },
     {
         "Inventaire":  "PAL-INF-002 Imprimante",
         "Affectation":  "Commercial",
         "Service":  "Commercial",
-        "Localisation":  "RDC"
+        "Localisation":  "RDC",
+        "Marque":  "HP LASER JET PRO MFP M310 NW"
     },
     {
         "Inventaire":  "PAL-INF-003 Imprimante",
         "Affectation":  "Commercial",
         "Service":  "Commercial",
-        "Localisation":  "RDC"
+        "Localisation":  "RDC",
+        "Marque":  "OCE 3023"
     },
     {
         "Inventaire":  "PAL-INF-001 Pointeuse",
         "Affectation":  "SITE PALMIER",
         "Service":  "RH",
-        "Localisation":  "RDC"
+        "Localisation":  "RDC",
+        "Marque":  "HIK VISION"
     },
     {
         "Inventaire":  "PAL-TRS-001 Chariot",
         "Affectation":  "Stock",
         "Service":  "stock",
-        "Localisation":  "RDC"
+        "Localisation":  "RDC",
+        "Marque":  ""
     }
 ];
 
@@ -3612,7 +4280,7 @@
 
     currentCode = codeParam;
 
-    // Recherche dans la base integree
+    // Recherche exacte ou partielle du code
     var found = null;
     for (var i = 0; i < INVENTORY_DB.length; i++) {
       var raw = String(INVENTORY_DB[i].Inventaire || INVENTORY_DB[i].code || '');
@@ -3622,46 +4290,61 @@
       }
     }
 
-    var finalType = '';
-    var finalAff  = '';
-    var finalSvc  = '';
-    var finalLoc  = '';
+    var finalType   = '';
+    var finalAff    = '';
+    var finalSvc    = '';
+    var finalLoc    = '';
+    var finalMarque = '';
 
     if (found) {
       var raw = String(found.Inventaire || '');
       var sp = raw.indexOf(' ');
-      finalType = sp > -1 ? raw.slice(sp + 1) : 'Article';
-      finalAff  = String(found.Affectation || '').trim();
-      finalSvc  = String(found.Service || '').trim();
-      finalLoc  = String(found.Localisation || '').trim();
+      finalType   = sp > -1 ? raw.slice(sp + 1) : 'Article';
+      finalAff    = String(found.Affectation || '').trim();
+      finalSvc    = String(found.Service || '').trim();
+      finalLoc    = String(found.Localisation || '').trim();
+      finalMarque = String(found.Marque || '').trim();
     }
 
-    document.getElementById('code').textContent = codeParam;
-    document.getElementById('type').textContent = finalType || 'Article';
-    document.getElementById('aff').textContent  = finalAff  || 'Non affect\u00e9';
-    document.getElementById('svc').textContent  = finalSvc  || '\u2014';
-    document.getElementById('loc').textContent  = finalLoc  || '\u2014';
+    document.getElementById('code').textContent   = codeParam;
+    document.getElementById('type').textContent   = finalType || 'Article';
+    document.getElementById('aff').textContent    = finalAff  || 'Non affect\u00e9';
+    document.getElementById('svc').textContent    = finalSvc  || '\u2014';
+    document.getElementById('loc').textContent    = finalLoc  || '\u2014';
+    document.getElementById('marque').textContent = finalMarque || '\u2014';
 
-    // Icone selon le type d'article (HTML entities dans JS)
+    // Icone selon le type d'article (HTML entities / unicode)
     var t = (finalType || '').toLowerCase();
-    var icon = '\u{1F4E6}';
-    if (t.indexOf('bureau') !== -1 || t.indexOf('chaise') !== -1 || t.indexOf('table') !== -1) {
-      icon = '\u{1FA91}';
-    } else if (t.indexOf('pc') !== -1 || t.indexOf('ordinateur') !== -1 || t.indexOf('laptop') !== -1) {
-      icon = '\u{1F4BB}';
+    var icon = '\u{1F4E6}'; // default box
+    
+    if (t.indexOf('pc') !== -1 || t.indexOf('ordinateur') !== -1 || t.indexOf('laptop') !== -1 || t.indexOf('poste') !== -1) {
+      icon = '\u{1F4BB}'; // computer
     } else if (t.indexOf('imprimante') !== -1) {
-      icon = '\u{1F5A8}';
-    } else if (t.indexOf('t\u00e9l\u00e9phone') !== -1 || t.indexOf('tel') !== -1) {
-      icon = '\u{1F4DE}';
-    } else if (t.indexOf('placard') !== -1 || t.indexOf('armoire') !== -1 || t.indexOf('caisson') !== -1) {
-      icon = '\u{1F5C4}';
-    } else if (t.indexOf('chariot') !== -1) {
-      icon = '\u{1F6D2}';
+      icon = '\u{1F5A8}'; // printer
+    } else if (t.indexOf('t\u00e9l\u00e9phone') !== -1 || t.indexOf('tel') !== -1 || t.indexOf('mobile') !== -1) {
+      icon = '\u{1F4DE}'; // phone
+    } else if (t.indexOf('fax') !== -1) {
+      icon = '\u{1F4E0}'; // fax
+    } else if (t.indexOf('projecteur') !== -1 || t.indexOf('retroprojecteur') !== -1) {
+      icon = '\u{1F4FD}'; // projector
     } else if (t.indexOf('pointeuse') !== -1) {
-      icon = '\u23F0';
+      icon = '\u23F0'; // clock
+    } else if (t.indexOf('scanner') !== -1 || t.indexOf('ch\u00e8que') !== -1) {
+      icon = '\u{1F4B3}'; // card/scanner
+    } else if (t.indexOf('r\u00e9frig\u00e9rateur') !== -1 || t.indexOf('frigo') !== -1) {
+      icon = '\u{1F9CA}'; // fridge/ice
+    } else if (t.indexOf('caisse') !== -1) {
+      icon = '\u{1F4B0}'; // cash register
+    } else if (t.indexOf('bureau') !== -1 || t.indexOf('chaise') !== -1 || t.indexOf('table') !== -1 || t.indexOf('comptoir') !== -1) {
+      icon = '\u{1FA91}'; // chair
+    } else if (t.indexOf('placard') !== -1 || t.indexOf('armoire') !== -1 || t.indexOf('caisson') !== -1) {
+      icon = '\u{1F5C4}'; // cabinet
+    } else if (t.indexOf('chariot') !== -1) {
+      icon = '\u{1F6D2}'; // cart
     } else if (t.indexOf('moniteur') !== -1 || t.indexOf('ecran') !== -1) {
-      icon = '\u{1F5A5}';
+      icon = '\u{1F5A5}'; // monitor
     }
+
     document.getElementById('icon').textContent = icon;
 
     checkSavedStatus();
@@ -3688,6 +4371,7 @@
         aff:  document.getElementById('aff').textContent,
         svc:  document.getElementById('svc').textContent,
         loc:  document.getElementById('loc').textContent,
+        marque: document.getElementById('marque').textContent,
         scannedAt: new Date().toISOString()
       });
       localStorage.setItem('mob_history', JSON.stringify(history));
