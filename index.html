@@ -4276,21 +4276,46 @@
 
   window.addEventListener('DOMContentLoaded', function() {
     var params = new URLSearchParams(window.location.search);
-    var codeParam = params.get('code') || 'BSK-MOB-001';
+    var codeParam = decodeURIComponent(params.get('code') || 'BSK-MOB-001').trim();
 
     currentCode = codeParam;
 
-    // Recherche exacte ou partielle du code
+    // 1. Recherche exacte par nom d'inventaire complet (ex: "BSK-INF-002 Imprimante")
     var found = null;
     for (var i = 0; i < INVENTORY_DB.length; i++) {
-      var raw = String(INVENTORY_DB[i].Inventaire || INVENTORY_DB[i].code || '');
-      if (raw.startsWith(codeParam) || raw.indexOf(codeParam) !== -1) {
+      var raw = String(INVENTORY_DB[i].Inventaire || INVENTORY_DB[i].code || '').trim();
+      if (raw.toLowerCase() === codeParam.toLowerCase()) {
         found = INVENTORY_DB[i];
         break;
       }
     }
 
+    // 2. Si pas de correspondance exacte, recherche du code exact au debut
+    if (!found) {
+      for (var i = 0; i < INVENTORY_DB.length; i++) {
+        var raw = String(INVENTORY_DB[i].Inventaire || INVENTORY_DB[i].code || '').trim();
+        var sp = raw.indexOf(' ');
+        var numCode = sp > -1 ? raw.slice(0, sp) : raw;
+        if (numCode.toLowerCase() === codeParam.toLowerCase()) {
+          found = INVENTORY_DB[i];
+          break;
+        }
+      }
+    }
+
+    // 3. Fallback recherche partielle
+    if (!found) {
+      for (var i = 0; i < INVENTORY_DB.length; i++) {
+        var raw = String(INVENTORY_DB[i].Inventaire || INVENTORY_DB[i].code || '').trim();
+        if (raw.toLowerCase().indexOf(codeParam.toLowerCase()) !== -1) {
+          found = INVENTORY_DB[i];
+          break;
+        }
+      }
+    }
+
     var finalType   = '';
+    var finalCodeNum = codeParam;
     var finalAff    = '';
     var finalSvc    = '';
     var finalLoc    = '';
@@ -4299,14 +4324,21 @@
     if (found) {
       var raw = String(found.Inventaire || '');
       var sp = raw.indexOf(' ');
-      finalType   = sp > -1 ? raw.slice(sp + 1) : 'Article';
-      finalAff    = String(found.Affectation || '').trim();
-      finalSvc    = String(found.Service || '').trim();
-      finalLoc    = String(found.Localisation || '').trim();
-      finalMarque = String(found.Marque || '').trim();
+      finalCodeNum = sp > -1 ? raw.slice(0, sp) : raw;
+      finalType    = sp > -1 ? raw.slice(sp + 1) : 'Article';
+      finalAff     = String(found.Affectation || '').trim();
+      finalSvc     = String(found.Service || '').trim();
+      finalLoc     = String(found.Localisation || '').trim();
+      finalMarque  = String(found.Marque || '').trim();
+    } else {
+      var sp = codeParam.indexOf(' ');
+      if (sp > -1) {
+        finalCodeNum = codeParam.slice(0, sp);
+        finalType    = codeParam.slice(sp + 1);
+      }
     }
 
-    document.getElementById('code').textContent   = codeParam;
+    document.getElementById('code').textContent   = finalCodeNum;
     document.getElementById('type').textContent   = finalType || 'Article';
     document.getElementById('aff').textContent    = finalAff  || 'Non affect\u00e9';
     document.getElementById('svc').textContent    = finalSvc  || '\u2014';
@@ -4317,32 +4349,32 @@
     var t = (finalType || '').toLowerCase();
     var icon = '\u{1F4E6}'; // default box
     
-    if (t.indexOf('pc') !== -1 || t.indexOf('ordinateur') !== -1 || t.indexOf('laptop') !== -1 || t.indexOf('poste') !== -1) {
-      icon = '\u{1F4BB}'; // computer
-    } else if (t.indexOf('imprimante') !== -1) {
-      icon = '\u{1F5A8}'; // printer
+    if (t.indexOf('imprimante') !== -1) {
+      icon = '\u{1F5A8}'; // ðŸ–¨ï¸ printer
+    } else if (t.indexOf('pc') !== -1 || t.indexOf('ordinateur') !== -1 || t.indexOf('laptop') !== -1 || t.indexOf('poste') !== -1) {
+      icon = '\u{1F4BB}'; // ðŸ’» computer
     } else if (t.indexOf('t\u00e9l\u00e9phone') !== -1 || t.indexOf('tel') !== -1 || t.indexOf('mobile') !== -1) {
-      icon = '\u{1F4DE}'; // phone
+      icon = '\u{1F4DE}'; // ðŸ“ž phone
     } else if (t.indexOf('fax') !== -1) {
-      icon = '\u{1F4E0}'; // fax
+      icon = '\u{1F4E0}'; // ðŸ“  fax
     } else if (t.indexOf('projecteur') !== -1 || t.indexOf('retroprojecteur') !== -1) {
-      icon = '\u{1F4FD}'; // projector
+      icon = '\u{1F4FD}'; // ðŸ“¹ projector
     } else if (t.indexOf('pointeuse') !== -1) {
-      icon = '\u23F0'; // clock
+      icon = '\u23F0'; // â° clock
     } else if (t.indexOf('scanner') !== -1 || t.indexOf('ch\u00e8que') !== -1) {
-      icon = '\u{1F4B3}'; // card/scanner
+      icon = '\u{1F4B3}'; // ðŸ’³ scanner/card
     } else if (t.indexOf('r\u00e9frig\u00e9rateur') !== -1 || t.indexOf('frigo') !== -1) {
-      icon = '\u{1F9CA}'; // fridge/ice
+      icon = '\u{1F9CA}'; // ðŸ§Š fridge
     } else if (t.indexOf('caisse') !== -1) {
-      icon = '\u{1F4B0}'; // cash register
+      icon = '\u{1F4B0}'; // ðŸ’° cash
     } else if (t.indexOf('bureau') !== -1 || t.indexOf('chaise') !== -1 || t.indexOf('table') !== -1 || t.indexOf('comptoir') !== -1) {
-      icon = '\u{1FA91}'; // chair
+      icon = '\u{1FA91}'; // ðŸª‘ chair
     } else if (t.indexOf('placard') !== -1 || t.indexOf('armoire') !== -1 || t.indexOf('caisson') !== -1) {
-      icon = '\u{1F5C4}'; // cabinet
+      icon = '\u{1F5C4}'; // ðŸ—„ï¸ cabinet
     } else if (t.indexOf('chariot') !== -1) {
-      icon = '\u{1F6D2}'; // cart
+      icon = '\u{1F6D2}'; // ðŸ›’ cart
     } else if (t.indexOf('moniteur') !== -1 || t.indexOf('ecran') !== -1) {
-      icon = '\u{1F5A5}'; // monitor
+      icon = '\u{1F5A5}'; // ðŸ–¥ï¸ monitor
     }
 
     document.getElementById('icon').textContent = icon;

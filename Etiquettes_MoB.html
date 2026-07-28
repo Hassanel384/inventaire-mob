@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8"/>
@@ -4391,6 +4391,7 @@ function parseRawData(dataArray) {
     const code = sp > -1 ? raw.slice(0, sp) : raw;
     const type = sp > -1 ? raw.slice(sp + 1) : (item.type || 'Article');
     all.push({
+      fullCode: raw,
       code: code,
       type: type,
       aff: String(item.Affectation || item.aff || '').trim(),
@@ -4488,10 +4489,10 @@ function updateStats(){
 }
 
 function getPayload(item){
-  // URL courte avec uniquement le code : QR code simple = scan instantané par caméra native
-  // index.html retrouve toutes les infos depuis sa base intégrée (562 articles)
+  // URL avec identifiant complet unique (ex: "BSK-INF-002 Imprimante") pour garantir l'affichage exact
   const baseUrl = document.getElementById('ghUrl').value.replace(/\/$/, '');
-  return baseUrl + '/index.html?code=' + encodeURIComponent(item.code);
+  const idStr = item.fullCode || (item.code + ' ' + item.type);
+  return baseUrl + '/index.html?code=' + encodeURIComponent(idStr);
 }
 
 function renderPreview(){
