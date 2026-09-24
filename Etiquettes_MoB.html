@@ -120,38 +120,39 @@
 
     .preview-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
-      gap: 16px; max-height: 600px; overflow-y: auto; padding: 4px;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 14px; max-height: 600px; overflow-y: auto; padding: 4px;
     }
 
     .pcard {
       background: #ffffff;
       color: #111827;
       border: 1.5px solid #d1d5db;
-      border-radius: 10px;
-      padding: 14px 10px;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      border-radius: 8px;
+      padding: 12px 6px;
+      display: flex; flex-direction: column; align-items: center; justify-content: space-between;
+      min-height: 180px;
       gap: 8px; text-align: center; transition: all .2s; box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     }
     .pcard .label-name {
-      font-size: 11px; font-weight: 800; color: #111827;
-      text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 2px;
-      white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%;
+      font-size: 10px; font-weight: 800; color: #111827;
+      text-transform: uppercase; letter-spacing: 0; margin-bottom: 2px;
+      white-space: nowrap !important; overflow: hidden; text-overflow: ellipsis; max-width: 100%;
     }
     .pcard .code-render {
-      background: #fff; padding: 4px; border-radius: 6px;
+      background: #fff; padding: 2px; border-radius: 6px;
       display: flex; align-items: center; justify-content: center;
       min-height: 80px; width: 100%;
     }
     .pcard .code-render canvas, .pcard .code-render svg {
-      max-width: 100%; height: auto; display: block; margin: 0 auto;
+      max-width: 80px; height: auto; display: block; margin: 0 auto;
     }
     /* Fix QRCode.js double-render bug: hide the img element, keep only canvas */
     .pcard .code-render img { display: none !important; }
     .pcard .code-num {
-      font-size: 10px; font-weight: 700; color: #1f2937;
-      letter-spacing: 0.2px; font-family: Arial, Helvetica, sans-serif; margin-top: 2px;
-      white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%;
+      font-size: 9.5px; font-weight: 700; color: #1f2937;
+      font-family: Arial, Helvetica, sans-serif;
+      white-space: nowrap !important; overflow: hidden; text-overflow: ellipsis; max-width: 100%;
     }
 
     /* Toast */
@@ -167,17 +168,17 @@
     .toast.err { border-color: #ef4444; color: #ef4444; }
 
     /* ════════════════════════════════════════
-    /* ════════════════════════════════════════
-       A4 PRINT LAYOUT (REF: 485D44254 — 48,5 × 25,4 mm — 44 ÉTIQUETTES / A4)
+       A4 PRINT LAYOUT (REF: 485D44254 — HAUTEUR 48,5 mm × LARGEUR 25,4 mm — 44 ÉTIQUETTES / A4)
     ════════════════════════════════════════ */
     #printArea { display: none; }
 
     @media print {
       @page {
-        size: A4 portrait;
-        /* 4 colonnes x 48.5mm = 194mm => marge gauche/droite = (210 - 194) / 2 = 8.0mm */
-        /* 11 lignes x 25.4mm = 279.4mm => marge haut/bas = (297 - 279.4) / 2 = 8.8mm */
-        margin: 8.8mm 8.0mm;
+        size: A4 landscape;
+        /* A4 Paysage: 297mm largeur x 210mm hauteur */
+        /* 11 colonnes de 25.4mm = 279.4mm => marges G/D = (297 - 279.4)/2 = 8.8mm */
+        /* 4 lignes de 48.5mm = 194mm => marges Haut/Bas = (210 - 194)/2 = 8.0mm */
+        margin: 8.0mm 8.8mm;
       }
 
       * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
@@ -186,12 +187,12 @@
       #printArea { display: block !important; }
 
       .print-page {
-        width: 194mm;
-        height: 279.4mm;
+        width: 279.4mm;          /* 11 x 25.4mm = 279.4mm */
+        height: 194mm;           /* 4 x 48.5mm = 194mm */
         margin: 0 auto;
         display: grid;
-        grid-template-columns: repeat(4, 48.5mm);
-        grid-template-rows: repeat(11, 25.4mm);
+        grid-template-columns: repeat(11, 25.4mm);
+        grid-template-rows: repeat(4, 48.5mm);
         gap: 0;
         padding: 0;
         box-sizing: border-box;
@@ -203,17 +204,17 @@
       }
 
       .print-label {
-        width: 48.5mm;
-        height: 25.4mm;
-        max-width: 48.5mm;
-        max-height: 25.4mm;
+        width: 25.4mm;
+        height: 48.5mm;
+        max-width: 25.4mm;
+        max-height: 48.5mm;
         box-sizing: border-box;
         border: 0.15px solid #e5e7eb;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: space-between;
-        padding: 1.2mm 1.5mm;
+        padding: 3mm 1mm;
         background: #ffffff;
         text-align: center;
         overflow: hidden;
@@ -221,22 +222,23 @@
         break-inside: avoid;
       }
 
+      /* Écriture du haut : minimisée sur UNE SEULE LIGNE (jamais de mot coupé ni décalé) */
       .lbl-name {
-        font-size: 5.5pt;
+        font-size: 3.8pt;
         font-weight: 800;
         color: #000000;
         text-align: center;
         text-transform: uppercase;
-        letter-spacing: 0.2px;
+        letter-spacing: -0.15px;
         line-height: 1;
         margin: 0;
         padding: 0;
-        max-width: 45.5mm;
-        width: 100%;
-        display: block;
-        white-space: nowrap;
+        white-space: nowrap !important;
         overflow: hidden;
         text-overflow: ellipsis;
+        max-width: 23.4mm;
+        width: 100%;
+        display: block;
       }
 
       .lbl-render {
@@ -246,13 +248,13 @@
         width: 100%;
         flex: 1;
         overflow: hidden;
-        margin: 0.3mm 0;
+        margin: 0.5mm 0;
       }
 
-      /* QR Code : 13mm × 13mm calibré pour occuper le centre avec une marge de sécurité totale */
+      /* QR Code : 18mm × 18mm au centre de l'étiquette 25,4 mm × 48,5 mm */
       .lbl-render canvas {
-        width: 13mm !important;
-        height: 13mm !important;
+        width: 18mm !important;
+        height: 18mm !important;
         display: block !important;
         margin: 0 auto !important;
       }
@@ -260,26 +262,27 @@
 
       /* Code-barres 1D */
       .lbl-render svg {
-        width: 44mm !important;
-        height: 11mm !important;
+        width: 23mm !important;
+        height: 16mm !important;
         display: block !important;
       }
 
+      /* Écriture du bas : minimisée sur UNE SEULE LIGNE (jamais de mot coupé ni décalé) */
       .lbl-code {
-        font-size: 4.6pt;
+        font-size: 3.6pt;
         font-weight: 700;
         color: #111827;
-        letter-spacing: 0.1px;
+        letter-spacing: -0.1px;
         text-align: center;
         font-family: Arial, Helvetica, sans-serif !important;
         margin: 0;
         padding: 0;
-        max-width: 45.5mm;
-        width: 100%;
-        display: block;
-        white-space: nowrap;
+        white-space: nowrap !important;
         overflow: hidden;
         text-overflow: ellipsis;
+        max-width: 23.4mm;
+        width: 100%;
+        display: block;
         line-height: 1;
       }
     }
@@ -5637,7 +5640,7 @@ async function doPrint(){
         } else {
           new QRCode(target, {
             text: getPayload(item),
-            width: 52, height: 52, // 13mm pour cadrage net dans 25.4mm
+            width: 68, height: 68, // 18mm pour cadrage net dans 25.4mm x 48.5mm
             colorDark: '#000000', colorLight: '#ffffff',
             correctLevel: QRCode.CorrectLevel.L // Niveau L = QR simple = scan caméra native instantané
           });
