@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8"/>
@@ -134,13 +134,14 @@
       gap: 8px; text-align: center; transition: all .2s; box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     }
     .pcard .label-name {
-      font-size: 13px; font-weight: 900; color: #111827;
-      text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 2px;
+      font-size: 11px; font-weight: 800; color: #111827;
+      text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 2px;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%;
     }
     .pcard .code-render {
       background: #fff; padding: 4px; border-radius: 6px;
       display: flex; align-items: center; justify-content: center;
-      min-height: 90px; width: 100%;
+      min-height: 80px; width: 100%;
     }
     .pcard .code-render canvas, .pcard .code-render svg {
       max-width: 100%; height: auto; display: block; margin: 0 auto;
@@ -148,8 +149,9 @@
     /* Fix QRCode.js double-render bug: hide the img element, keep only canvas */
     .pcard .code-render img { display: none !important; }
     .pcard .code-num {
-      font-size: 11px; font-weight: 800; color: #1f2937;
-      letter-spacing: 1.2px; font-family: 'Courier New', monospace; margin-top: 2px;
+      font-size: 10px; font-weight: 700; color: #1f2937;
+      letter-spacing: 0.2px; font-family: Arial, Helvetica, sans-serif; margin-top: 2px;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%;
     }
 
     /* Toast */
@@ -198,12 +200,12 @@
       .print-label {
         width: 48.5mm;
         height: 25.4mm;
-        border: 0.4px solid #cccccc;
+        border: 0.3px solid #d1d5db;
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
-        padding: 1mm;
+        justify-content: space-between;
+        padding: 0.8mm 1mm;
         box-sizing: border-box;
         background: #ffffff;
         text-align: center;
@@ -211,18 +213,21 @@
       }
 
       .lbl-name {
-        font-size: 6.5pt;
-        font-weight: 900;
+        font-size: 5.5pt;
+        font-weight: 800;
         color: #000000;
         text-align: center;
         text-transform: uppercase;
-        letter-spacing: 0.3px;
-        line-height: 1;
-        margin-bottom: 0.5mm;
+        letter-spacing: 0.2px;
+        line-height: 1.1;
+        margin: 0;
+        padding: 0;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
         max-width: 46.5mm;
+        width: 100%;
+        display: block;
       }
 
       .lbl-render {
@@ -232,12 +237,13 @@
         width: 100%;
         flex: 1;
         overflow: hidden;
+        margin: 0.3mm 0;
       }
 
-      /* QR Code dans 48.5x25.4mm : 13.5mm x 13.5mm */
+      /* QR Code dans 48.5x25.4mm : 12.5mm x 12.5mm pour un cadrage net et aéré */
       .lbl-render canvas {
-        width: 13.5mm !important;
-        height: 13.5mm !important;
+        width: 12.5mm !important;
+        height: 12.5mm !important;
         display: block !important;
         margin: 0 auto !important;
       }
@@ -245,23 +251,27 @@
 
       /* Code-barres 1D */
       .lbl-render svg {
-        width: 45mm !important;
-        height: 10.5mm !important;
+        width: 44mm !important;
+        height: 10mm !important;
         display: block !important;
       }
 
       .lbl-code {
-        font-size: 5.5pt;
-        font-weight: 800;
+        font-size: 4.8pt;
+        font-weight: 700;
         color: #111827;
-        letter-spacing: 0.5px;
+        letter-spacing: 0.1px;
         text-align: center;
-        font-family: 'Courier New', Courier, monospace;
-        margin-top: 0.3mm;
+        font-family: Arial, Helvetica, sans-serif !important;
+        margin: 0;
+        padding: 0;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
         max-width: 46.5mm;
+        width: 100%;
+        display: block;
+        line-height: 1.1;
       }
     }
   </style>
