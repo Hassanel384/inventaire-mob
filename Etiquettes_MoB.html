@@ -200,12 +200,13 @@
       .print-label {
         width: 48.5mm;
         height: 25.4mm;
-        border: 0.3px solid #d1d5db;
+        border: 0.2px solid #d1d5db;
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: space-between;
-        padding: 0.8mm 1mm;
+        justify-content: center;
+        gap: 0.5mm;
+        padding: 0.8mm 1.5mm;
         box-sizing: border-box;
         background: #ffffff;
         text-align: center;
@@ -213,19 +214,19 @@
       }
 
       .lbl-name {
-        font-size: 5.5pt;
+        font-size: 4.8pt;
         font-weight: 800;
         color: #000000;
         text-align: center;
         text-transform: uppercase;
-        letter-spacing: 0.2px;
+        letter-spacing: 0.1px;
         line-height: 1.1;
         margin: 0;
         padding: 0;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        max-width: 46.5mm;
+        max-width: 45.5mm;
         width: 100%;
         display: block;
       }
@@ -235,15 +236,14 @@
         align-items: center;
         justify-content: center;
         width: 100%;
-        flex: 1;
         overflow: hidden;
-        margin: 0.3mm 0;
+        margin: 0;
       }
 
-      /* QR Code dans 48.5x25.4mm : 12.5mm x 12.5mm pour un cadrage net et aéré */
+      /* QR Code optimisé à 11mm × 11mm : libère de l'espace pour que l'écriture entre sans déborder */
       .lbl-render canvas {
-        width: 12.5mm !important;
-        height: 12.5mm !important;
+        width: 11mm !important;
+        height: 11mm !important;
         display: block !important;
         margin: 0 auto !important;
       }
@@ -251,16 +251,16 @@
 
       /* Code-barres 1D */
       .lbl-render svg {
-        width: 44mm !important;
-        height: 10mm !important;
+        width: 40mm !important;
+        height: 9mm !important;
         display: block !important;
       }
 
       .lbl-code {
-        font-size: 4.8pt;
+        font-size: 4.2pt;
         font-weight: 700;
         color: #111827;
-        letter-spacing: 0.1px;
+        letter-spacing: 0;
         text-align: center;
         font-family: Arial, Helvetica, sans-serif !important;
         margin: 0;
@@ -268,7 +268,7 @@
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        max-width: 46.5mm;
+        max-width: 45.5mm;
         width: 100%;
         display: block;
         line-height: 1.1;
@@ -5628,7 +5628,7 @@ async function doPrint(){
         } else {
           new QRCode(target, {
             text: getPayload(item),
-            width: 53, height: 53, // ~14mm à 96dpi pour étiquette 25.4mm
+            width: 44, height: 44, // ~11mm pour cadrage net dans 25.4mm
             colorDark: '#000000', colorLight: '#ffffff',
             correctLevel: QRCode.CorrectLevel.L // Niveau L = QR simple = scan caméra native instantané
           });
