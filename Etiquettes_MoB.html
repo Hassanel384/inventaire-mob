@@ -167,123 +167,132 @@
     .toast.err { border-color: #ef4444; color: #ef4444; }
 
     /* ════════════════════════════════════════
-       A4 PRINT LAYOUT (GRID 3 COLUMNS)
+    /* ════════════════════════════════════════
+       A4 PRINT LAYOUT (REF: 485D44254 — 44 ÉTIQUETTES / A4)
     ════════════════════════════════════════ */
     #printArea { display: none; }
 
     @media print {
-      /* ═══ FORMAT PLANCHE REF: 485D44254 : 48,5 × 25,4 mm — 4 col × 11 lignes = 44 étiquettes/A4 ═══ */
-      @page {
-        size: A4 portrait;
-        /* Largeur A4 210mm - (4 x 48.5mm = 194mm) = 16mm => 8mm marge G/D */
-        /* Hauteur A4 297mm - (11 x 25.4mm = 279.4mm) = 17.6mm => 8.8mm marge Haut/Bas */
-        margin: 8.8mm 8mm;
-      }
       * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
       body { background: #ffffff !important; margin: 0 !important; padding: 0 !important; font-family: Arial, Helvetica, sans-serif !important; }
       header, .wrap, .toast { display: none !important; }
       #printArea { display: block !important; }
 
-      .print-page {
-        width: 194mm;            /* 4 x 48.5mm = 194mm */
+      /* ─── MODE VERTICAL (DÉFAUT) : 25,4 mm largeur × 48,5 mm hauteur (11 col × 4 lignes = 44 / A4 paysage) ─── */
+      body.mode-vertical .print-page {
+        width: 279.4mm;
+        height: 194mm;
         margin: 0 auto;
         display: grid;
-        grid-template-columns: repeat(4, 48.5mm);
-        grid-template-rows: repeat(11, 25.4mm);  /* 11 lignes = 44 etiquettes/page */
+        grid-template-columns: repeat(11, 25.4mm);
+        grid-template-rows: repeat(4, 48.5mm);
         gap: 0mm;
         padding: 0;
         box-sizing: border-box;
         page-break-after: always;
         align-content: start;
       }
+      body.mode-vertical .print-label {
+        width: 25.4mm;
+        height: 48.5mm;
+        border: 0.2px solid #d1d5db;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.5mm 1mm;
+        box-sizing: border-box;
+        background: #ffffff;
+        text-align: center;
+        overflow: hidden;
+      }
+      body.mode-vertical .lbl-name {
+        font-size: 5pt; font-weight: 800; color: #000000; text-align: center;
+        text-transform: uppercase; letter-spacing: 0.1px; line-height: 1.15;
+        margin: 0; padding: 0; max-width: 23.4mm; width: 100%; display: block;
+        word-break: break-word; overflow: hidden; max-height: 7mm;
+      }
+      body.mode-vertical .lbl-render {
+        display: flex; align-items: center; justify-content: center; width: 100%;
+        flex: 1; overflow: hidden; margin: 0.5mm 0;
+      }
+      body.mode-vertical .lbl-render canvas {
+        width: 18mm !important; height: 18mm !important; display: block !important; margin: 0 auto !important;
+      }
+      body.mode-vertical .lbl-render svg {
+        width: 23mm !important; height: 16mm !important; display: block !important;
+      }
+      body.mode-vertical .lbl-code {
+        font-size: 4.5pt; font-weight: 700; color: #111827; letter-spacing: 0; text-align: center;
+        font-family: Arial, Helvetica, sans-serif !important; margin: 0; padding: 0;
+        max-width: 23.4mm; width: 100%; display: flex; flex-direction: column; align-items: center;
+        gap: 0.3mm; line-height: 1.15; word-break: break-word; overflow: hidden; max-height: 8mm;
+      }
+      body.mode-vertical .lbl-code .code-primary { font-weight: 800; font-size: 5pt; color: #000000; }
+      body.mode-vertical .lbl-code .code-secondary { font-weight: 600; font-size: 3.8pt; color: #374151; text-transform: capitalize; }
 
-      .print-label {
+      /* ─── MODE HORIZONTAL : 48,5 mm longueur × 25,4 mm hauteur (4 col × 11 lignes = 44 / A4 portrait) ─── */
+      body.mode-horizontal .print-page {
+        width: 194mm;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(4, 48.5mm);
+        grid-template-rows: repeat(11, 25.4mm);
+        gap: 0mm;
+        padding: 0;
+        box-sizing: border-box;
+        page-break-after: always;
+        align-content: start;
+      }
+      body.mode-horizontal .print-label {
         width: 48.5mm;
         height: 25.4mm;
         border: 0.2px solid #d1d5db;
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
-        gap: 0.5mm;
-        padding: 0.8mm 1.5mm;
+        justify-content: space-between;
+        padding: 1.2mm 1.5mm;
         box-sizing: border-box;
         background: #ffffff;
         text-align: center;
         overflow: hidden;
       }
-
-      .lbl-name {
-        font-size: 4.8pt;
-        font-weight: 800;
-        color: #000000;
-        text-align: center;
-        text-transform: uppercase;
-        letter-spacing: 0.1px;
-        line-height: 1.1;
-        margin: 0;
-        padding: 0;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 45.5mm;
-        width: 100%;
-        display: block;
+      body.mode-horizontal .lbl-name {
+        font-size: 5.8pt; font-weight: 800; color: #000000; text-align: center;
+        text-transform: uppercase; letter-spacing: 0.2px; line-height: 1.1;
+        margin: 0; padding: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        max-width: 45.5mm; width: 100%; display: block;
       }
-
-      .lbl-render {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        overflow: hidden;
-        margin: 0;
+      body.mode-horizontal .lbl-render {
+        display: flex; align-items: center; justify-content: center; width: 100%;
+        flex: 1; overflow: hidden; margin: 0.4mm 0;
       }
-
-      /* QR Code optimisé à 11mm × 11mm : libère de l'espace pour que l'écriture entre sans déborder */
-      .lbl-render canvas {
-        width: 11mm !important;
-        height: 11mm !important;
-        display: block !important;
-        margin: 0 auto !important;
+      body.mode-horizontal .lbl-render canvas {
+        width: 14mm !important; height: 14mm !important; display: block !important; margin: 0 auto !important;
       }
-      .lbl-render img { display: none !important; }
-
-      /* Code-barres 1D */
-      .lbl-render svg {
-        width: 40mm !important;
-        height: 9mm !important;
-        display: block !important;
+      body.mode-horizontal .lbl-render svg {
+        width: 44mm !important; height: 12mm !important; display: block !important;
       }
-
-      .lbl-code {
-        font-size: 4.2pt;
-        font-weight: 700;
-        color: #111827;
-        letter-spacing: 0;
-        text-align: center;
-        font-family: Arial, Helvetica, sans-serif !important;
-        margin: 0;
-        padding: 0;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 45.5mm;
-        width: 100%;
-        display: block;
-        line-height: 1.1;
+      body.mode-horizontal .lbl-code {
+        font-size: 4.8pt; font-weight: 700; color: #111827; letter-spacing: 0.1px; text-align: center;
+        font-family: Arial, Helvetica, sans-serif !important; margin: 0; padding: 0;
+        white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 45.5mm; width: 100%; display: block; line-height: 1.1;
       }
     }
   </style>
+  <style id="dynamicPrintStyle">
+    @media print { @page { size: A4 landscape; margin: 8mm 8.8mm; } }
+  </style>
 </head>
-<body>
+<body class="mode-vertical">
 
 <header>
   <div class="brand">
     <div class="brand-icon">🖨️</div>
     <div>
-      <h1>Générateur d'Étiquettes MoB (A4 — 3 Colonnes)</h1>
-      <p>Impression par département · Scannable par smartphone</p>
+      <h1>Générateur d'Étiquettes MoB (A4 — 44 Étiquettes)</h1>
+      <p>Planche Ref 485D44254 · Format 48.5 × 25.4 mm</p>
     </div>
   </div>
   <div style="display:flex; gap:10px;">
@@ -303,6 +312,13 @@
   </div>
 
   <div class="bar">
+    <div class="grp">
+      <label>📐 Orientation Planche A4</label>
+      <select id="orientSelect" onchange="changeOrientation()">
+        <option value="vertical" selected>Verticale : 25,4 × 48,5 mm (Paysage)</option>
+        <option value="horizontal">Horizontale : 48,5 × 25,4 mm (Portrait)</option>
+      </select>
+    </div>
     <div class="grp">
       <label>🏢 Service / Département</label>
       <select id="fSvc" onchange="filter()"><option value="">Tous les services</option></select>
@@ -5520,10 +5536,26 @@ function getPayload(item){
   return baseUrl + '/index.html?code=' + encodeURIComponent(idStr);
 }
 
+function changeOrientation() {
+  const orient = document.getElementById('orientSelect').value;
+  const styleEl = document.getElementById('dynamicPrintStyle');
+  if (orient === 'horizontal') {
+    document.body.classList.remove('mode-vertical');
+    document.body.classList.add('mode-horizontal');
+    if (styleEl) styleEl.textContent = '@media print { @page { size: A4 portrait; margin: 8.8mm 8mm; } }';
+  } else {
+    document.body.classList.remove('mode-horizontal');
+    document.body.classList.add('mode-vertical');
+    if (styleEl) styleEl.textContent = '@media print { @page { size: A4 landscape; margin: 8mm 8.8mm; } }';
+  }
+  renderPreview();
+}
+
 function renderPreview(){
   const g=document.getElementById('pg');
   g.innerHTML='';
   const type = document.getElementById('codeType').value;
+  const orient = document.getElementById('orientSelect') ? document.getElementById('orientSelect').value : 'vertical';
 
   const preview = shown.slice(0, 30);
   preview.forEach((item,i)=>{
@@ -5532,12 +5564,23 @@ function renderPreview(){
     const renderId=`pv_${i}`;
     const nom = (item.type || item.code).toUpperCase();
 
-    const fullCodeStr = item.fullCode || (item.code + ' ' + item.type);
-    c.innerHTML=`
-      <div class="label-name">${nom}</div>
-      <div class="code-render" id="${renderId}"></div>
-      <div class="code-num">${fullCodeStr}</div>
-    `;
+    if (orient === 'horizontal') {
+      const fullCodeStr = item.fullCode || (item.code + ' ' + item.type);
+      c.innerHTML=`
+        <div class="label-name">${nom}</div>
+        <div class="code-render" id="${renderId}"></div>
+        <div class="code-num">${fullCodeStr}</div>
+      `;
+    } else {
+      c.innerHTML=`
+        <div class="label-name">${nom}</div>
+        <div class="code-render" id="${renderId}"></div>
+        <div class="code-num">
+          <span style="font-weight:800;font-size:11px;color:#000;display:block;">${item.code}</span>
+          <span style="font-size:9.5px;color:#4b5563;display:block;">${item.type}</span>
+        </div>
+      `;
+    }
     g.appendChild(c);
 
     setTimeout(()=>{
@@ -5580,7 +5623,8 @@ async function doPrint(){
 
   const pa=document.getElementById('printArea'); pa.innerHTML='';
   const type = document.getElementById('codeType').value;
-  const PER = 44; // 52.5x25.4mm : 4 colonnes x 11 lignes = 44 etiquettes/page
+  const orient = document.getElementById('orientSelect') ? document.getElementById('orientSelect').value : 'vertical';
+  const PER = 44; // 44 étiquettes par page A4 (Ref: 485D44254)
   const pages = Math.ceil(shown.length / PER);
 
   for(let p=0; p<pages; p++){
@@ -5592,12 +5636,23 @@ async function doPrint(){
       const nom = (item.type || item.code).toUpperCase();
       const rId = `pr_${p}_${idx}`;
 
-      const fullCodeStr = item.fullCode || (item.code + ' ' + item.type);
-      lbl.innerHTML=`
-        <div class="lbl-name">${nom}</div>
-        <div class="lbl-render" id="${rId}"></div>
-        <div class="lbl-code">${fullCodeStr}</div>
-      `;
+      if (orient === 'horizontal') {
+        const fullCodeStr = item.fullCode || (item.code + ' ' + item.type);
+        lbl.innerHTML=`
+          <div class="lbl-name">${nom}</div>
+          <div class="lbl-render" id="${rId}"></div>
+          <div class="lbl-code">${fullCodeStr}</div>
+        `;
+      } else {
+        lbl.innerHTML=`
+          <div class="lbl-name">${nom}</div>
+          <div class="lbl-render" id="${rId}"></div>
+          <div class="lbl-code">
+            <span class="code-primary">${item.code}</span>
+            <span class="code-secondary">${item.type}</span>
+          </div>
+        `;
+      }
       pg.appendChild(lbl);
     });
 
@@ -5622,13 +5677,14 @@ async function doPrint(){
           JsBarcode(svg, item.code, {
             format: "CODE128",
             displayValue: false,
-            height: 30,  // hauteur réduite pour 25.4mm
+            height: 30,
             margin: 1
           });
         } else {
           new QRCode(target, {
             text: getPayload(item),
-            width: 44, height: 44, // ~11mm pour cadrage net dans 25.4mm
+            width: (orient === 'horizontal' ? 53 : 68),
+            height: (orient === 'horizontal' ? 53 : 68),
             colorDark: '#000000', colorLight: '#ffffff',
             correctLevel: QRCode.CorrectLevel.L // Niveau L = QR simple = scan caméra native instantané
           });
